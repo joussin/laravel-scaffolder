@@ -1,0 +1,4 @@
+<?php
+
+
+Route::apiResource('{{ model_name_snake }}', {{ controller_name }}::class);

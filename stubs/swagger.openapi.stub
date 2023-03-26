@@ -1,0 +1,111 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Swagger",
+        "description": "",
+        "termsOfService": "",
+        "contact": {
+            "email": "apiteam@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": ""
+        },
+        "version": "0.0.0"
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": ""
+    },
+    "servers": [
+        {
+            "url": "{{ swagger_api_url }}"
+
+        }
+    ],
+    "tags": [
+        {
+            "name": "{{ swagger_api_resource_1_name }}",
+            "description": "Grant {{ swagger_api_resource_1_name }} access",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        }
+    ],
+
+    "security": [
+        {
+            "OAuth2": [
+
+            ]
+        }
+    ],
+
+    "paths": {
+
+        "/{{ swagger_api_resource_1_route_name }}" : {
+            "get": {
+                "tags": [
+                    "{{ swagger_api_resource_1_name }}"
+                ],
+                "summary": "Find all {{ swagger_api_resource_1_name }}",
+                "description": "Returns a single {{ swagger_api_resource_1_name }}",
+                "operationId": "getAll{{ swagger_api_resource_1_name }}",
+                "parameters": [
+
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/{{ swagger_api_resource_1_name }}"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "{{ swagger_api_resource_1_name }}": {
+                "type": "object",
+                "properties": {
+
+                    "{{ swagger_api_resource_1_property_1_name }}": {
+                        "type": "{{ swagger_api_resource_1_property_1_type }}",
+                        "example": "{{ swagger_api_resource_1_property_1_example }}"
+                    }
+
+                }
+            }
+        },
+
+        "securitySchemes": {
+            "OAuth2": {
+                "type": "oauth2",
+                "description": "description oauth2",
+                "flows": {
+                    "clientCredentials": {
+                        "authorizationUrl": "{{ swagger_api_security_oauth2_url }}/oauth/authorize",
+                        "tokenUrl": "{{ swagger_api_security_oauth2_url }}/oauth/token",
+                        "scopes": {
+                            "{{ swagger_api_security_oauth2_scope_1_name }}": "{{ swagger_api_security_oauth2_scope_1_description }}"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
