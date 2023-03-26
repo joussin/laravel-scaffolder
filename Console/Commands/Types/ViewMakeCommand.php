@@ -39,7 +39,7 @@ class ViewMakeCommand extends AbstractMakeCommand
         $template = $this->argument('template');
 
         $this->generatedFileName = $template;
-        $this->stubFilename = "templates/".$template.".blade.php.stub";
+        $this->stubFilename = "html/".$template.".blade.php.stub";
 
         if(
             !File::isFile(base_path( self::STUB_PATH . $this->stubFilename))
@@ -81,7 +81,7 @@ class ViewMakeCommand extends AbstractMakeCommand
 
     protected $classNameSuffix = "";
 
-    protected $stubFilename = "templates/layout.blade.php.stub";
+    protected $stubFilename = "html/layout.blade.php.stub";
 
     protected $classNamespace = "";
 
