@@ -3,7 +3,6 @@
 namespace Api\Providers;
 
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
 
 class PackageServiceProvider extends ServiceProvider
@@ -50,10 +49,11 @@ class PackageServiceProvider extends ServiceProvider
 
     public function loadRoutes()
     {
+        $generated_route_dir = "src/Generated/routes/";
 
-        if(  File::isDirectory("src/Generated/routes/"))
+        if(  File::isDirectory($generated_route_dir))
         {
-            $routesFiles = File::files(base_path("src/Generated/routes/"));
+            $routesFiles = File::files(base_path($generated_route_dir));
 
 
             foreach ($routesFiles as $routesFile) {

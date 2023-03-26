@@ -11,11 +11,12 @@ use Illuminate\Support\Facades\File;
 class AbstractMakeCommand  extends GeneratorCommand implements MakeCommandInterface
 {
 
-    protected const MAIN_PATH = "src/Gen/";
+
+    protected const MAIN_PATH = "src/Generated/";
 
     protected const ROOT_NAMESPACE = 'App\\';
 
-    protected const MAIN_NAMESPACE = 'Api\\Gen\\';
+    protected const MAIN_NAMESPACE = 'Api\\Generated\\';
 
     protected const STUB_PATH = "src/stubs/";
 
