@@ -1,0 +1,164 @@
+"/{{ swagger_api_resource_route_name }}" : {
+    "get": {
+        "tags": [
+            "{{ swagger_api_resource_name }}"
+        ],
+        "summary": "Find all {{ swagger_api_resource_name }}",
+        "description": "Returns a single {{ swagger_api_resource_name }}",
+        "operationId": "getAll{{ swagger_api_resource_name }}",
+        "parameters": [
+
+
+        ],
+        "responses": {
+            "200": {
+                "description": "successful operation",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/{{ swagger_api_resource_name }}"
+                        }
+                    }
+                }
+            },
+            "400": {
+                "description": "Invalid ID supplied"
+            },
+            "404": {
+                "description": "Not found"
+            }
+        }
+    },
+    "post": {
+            "tags": [
+                "{{ swagger_api_resource_name }}"
+            ],
+            "summary": "Find all {{ swagger_api_resource_name }}",
+            "description": "Returns a single {{ swagger_api_resource_name }}",
+            "operationId": "getAll{{ swagger_api_resource_name }}",
+
+
+            "requestBody": {
+                "description": "Create a new {{ swagger_api_resource_name }}",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "example" : {
+                                "test" : 1,
+                                "test_3" : 1,
+                                "test8" : 1,
+                                "testkxb lfd" : 1,
+                            }
+                        }
+                    }
+                },
+                "required": true
+            },
+            "responses": {
+                "200": {
+                    "description": "successful operation",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/{{ swagger_api_resource_name }}"
+                            }
+                        }
+                    }
+                },
+                "400": {
+                    "description": "Invalid ID supplied"
+                },
+                "404": {
+                    "description": "Not found"
+                }
+            }
+        }
+
+
+},
+
+
+"/{{ swagger_api_resource_route_name }}/{{ model_name_singular_variable }}" : {
+    "put": {
+        "tags": [
+            "{{ swagger_api_resource_name }}"
+        ],
+        "summary": "Edit {{ swagger_api_resource_name }}",
+        "description": "Edit {{ swagger_api_resource_name }}",
+        "operationId": "edit{{ swagger_api_resource_name }}",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "description": "ID of {{ swagger_api_resource_name }} to return",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+
+        ],
+        "responses": {
+            "200": {
+                "description": "successful operation",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/{{ swagger_api_resource_name }}"
+                        }
+                    }
+                }
+            },
+            "400": {
+                "description": "Invalid ID supplied"
+            },
+            "404": {
+                "description": "Not found"
+            }
+        }
+    },
+    "delete": {
+            "tags": [
+                "{{ swagger_api_resource_name }}"
+            ],
+            "summary": "Delete {{ swagger_api_resource_name }}",
+            "description": "Delete a single {{ swagger_api_resource_name }}",
+            "operationId": "Delete{{ swagger_api_resource_name }}",
+
+
+            "parameters": [
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "ID of {{ swagger_api_resource_name }} to delete",
+                            "required": true,
+                            "schema": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        },
+
+                    ],
+            "responses": {
+                "200": {
+                    "description": "successful operation",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/{{ swagger_api_resource_name }}"
+                            }
+                        }
+                    }
+                },
+                "400": {
+                    "description": "Invalid ID supplied"
+                },
+                "404": {
+                    "description": "Not found"
+                }
+            }
+        }
+
+
+},

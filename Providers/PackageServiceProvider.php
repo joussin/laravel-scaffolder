@@ -17,6 +17,7 @@ class PackageServiceProvider extends ServiceProvider
 
         $this->commands(
             [
+                \Api\Console\Commands\GenerateFromConfigMakeCommand::class,
                 \Api\Console\Commands\MainGeneratorMakeCommand::class,
                 \Api\Console\Commands\Types\ValidationRulesMakeCommand::class,
                 \Api\Console\Commands\Types\ModelMakeCommand::class,
@@ -44,6 +45,9 @@ class PackageServiceProvider extends ServiceProvider
     {
 
         $this->loadRoutes();
+
+
+
     }
 
 

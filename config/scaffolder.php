@@ -4,9 +4,6 @@
 return [
 
     'resources' => [
-        'User' => [
-            'attributes' => []
-        ],
 
         'Location' => [
             'attributes' => [
@@ -44,6 +41,11 @@ return [
                 ]
             ]
         ],
+
+        'User' => [
+            'attributes' => []
+        ],
+
         'City'     => [
             'attributes' => []
         ],

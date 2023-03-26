@@ -16,6 +16,7 @@ class MainGeneratorMakeCommand extends Command
      * @var string
      */
     protected $signature = 'make:generator {resource}
+                           {--export : export to laravel project ? }
                            {--model : Create model class}
                             {--controller : Create controller class}
                             {--controller-api : Create controller-api class}
@@ -46,6 +47,16 @@ class MainGeneratorMakeCommand extends Command
     public function handle()
     {
         $resource = Str::studly($this->argument('resource'));
+
+
+
+        $export = false;
+
+
+        if ($this->option('export')) {
+                $export = true;
+        }
+
 
         if ($this->option('model')) {
                 Artisan::call("maker:model $resource");
@@ -82,7 +93,12 @@ class MainGeneratorMakeCommand extends Command
 
 
         if ($this->option('swagger')) {
+            if($export) {
+                Artisan::call("maker:swagger  --swagger_to_public");
+            }
+            else{
                 Artisan::call("maker:swagger");
+            }
         }
 
 
@@ -92,10 +108,20 @@ class MainGeneratorMakeCommand extends Command
 
 
         if ($this->option('views')) {
+
+            if($export)
+            {
+                Artisan::call("maker:views $resource layout --move_views_to_resources");
+                Artisan::call("maker:views $resource header --move_views_to_resources");
+                Artisan::call("maker:views $resource footer --move_views_to_resources");
+                Artisan::call("maker:views $resource index --move_views_to_resources");
+            }
+            else {
                 Artisan::call("maker:views $resource layout ");
                 Artisan::call("maker:views $resource header ");
                 Artisan::call("maker:views $resource footer ");
                 Artisan::call("maker:views $resource index ");
+            }
         }
 
         if ($this->option('route')) {
@@ -108,8 +134,6 @@ class MainGeneratorMakeCommand extends Command
                 Artisan::call("maker:route-resource $resource");
                 Artisan::call("maker:route-resource $resource --route_api");
         }
-
-
 
     }
 

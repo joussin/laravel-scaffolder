@@ -61,9 +61,15 @@ model   --bo
 # ------------------------------------ TEST ------------------------------------
 
 
-```bash
+## SANS  --export:
 php artisan make:generator Address --model --controller --controller-api  --validation-rules --factory --migration --seeder --swagger --resource --views --route --route-resource
-```
+
+
+##  --export:
+php artisan make:generator Address --export --model --controller --controller-api  --validation-rules --factory --migration --seeder --swagger --resource --views --route --route-resource
+
+
+
 
 ````bash
 php artisan  maker:views Location layout --move_views_to_resources
@@ -83,12 +89,18 @@ php artisan make:generator Address  --controller
 ```
 
 
+```bash
+php artisan make:generator Address  --export --swagger 
+```
+
+
 
 ```bash
 php artisan route:list
 ```
 
 
+php artisan make:generator Address  --swagger --export
 
 
 

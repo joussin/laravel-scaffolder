@@ -42,6 +42,31 @@ class SwaggerMakeCommand extends AbstractMakeCommand
         $this->replaceData ['{{ swagger_api_security_oauth2_scope_1_description }}'] = "route:view scope" ;
 
 
+        $scaffold = config('scaffolder');
+
+        $resources = $scaffold['resources'];
+
+
+        $pathsStr = "";
+
+        foreach ($resources as $resource => $resourceData) {
+
+
+            $resource_partial = file_get_contents("src/stubs/swagger/swagger.openapi.resource.endpoints.stub");
+
+            $resource_partial_render = str_replace("{{ swagger_api_resource_route_name }}", strtolower($resource), $resource_partial);
+            $resource_partial_render = str_replace("{{ swagger_api_resource_name }}", $resource, $resource_partial_render);
+
+            $resource_partial_render = str_replace("{{ swagger_api_resource_route_name_id }}", 1, $resource_partial_render);
+            $resource_partial_render = str_replace("{{ model_name_singular_variable }}", "{id}", $resource_partial_render);
+
+            $pathsStr .= $resource_partial_render;
+        }
+
+        $this->replaceData ['{{ swagger_api_resources_paths }}'] = $pathsStr;
+
+
+
         $this->replaceData ['{{ swagger_api_resource_1_name }}'] = "Product" ;
         $this->replaceData ['{{ swagger_api_resource_1_route_name }}'] = "product" ;
         $this->replaceData ['{{ swagger_api_resource_1_property_1_name }}'] = "name" ;
@@ -53,7 +78,7 @@ class SwaggerMakeCommand extends AbstractMakeCommand
 
         $this->getFiles()->put(
             base_path(self::MAIN_PATH . "public/api/docs/index.html"),
-            file_get_contents(base_path(self::STUB_PATH . "swagger.index.stub"))
+            file_get_contents(base_path(self::STUB_PATH . "swagger/swagger.index.stub"))
         );
 
 
@@ -76,7 +101,7 @@ class SwaggerMakeCommand extends AbstractMakeCommand
 
     protected $classNameSuffix = "";
 
-    protected $stubFilename = "swagger.openapi.stub";
+    protected $stubFilename = "swagger/swagger.openapi.stub";
 
     protected $classNamespace = "";
 
