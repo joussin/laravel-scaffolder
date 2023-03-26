@@ -78,7 +78,7 @@ class SwaggerMakeCommand extends AbstractMakeCommand
 
         $this->getFiles()->put(
             base_path(self::MAIN_PATH . "public/api/docs/index.html"),
-            file_get_contents(base_path(self::STUB_PATH . "swagger/swagger.index.stub"))
+            file_get_contents(base_path(self::STUB_PATH . "swagger/swagger.index.html"))
         );
 
 

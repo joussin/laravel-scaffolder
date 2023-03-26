@@ -111,16 +111,16 @@ class MainGeneratorMakeCommand extends Command
 
             if($export)
             {
-                Artisan::call("maker:views $resource layout --move_views_to_resources");
-                Artisan::call("maker:views $resource header --move_views_to_resources");
-                Artisan::call("maker:views $resource footer --move_views_to_resources");
-                Artisan::call("maker:views $resource index --move_views_to_resources");
+                Artisan::call("maker:views backoffice layout backoffice --move_views_to_resources");
+                Artisan::call("maker:views backoffice header backoffice --move_views_to_resources");
+                Artisan::call("maker:views backoffice footer backoffice --move_views_to_resources");
+                Artisan::call("maker:views $resource index backoffice --move_views_to_resources");
             }
             else {
-                Artisan::call("maker:views $resource layout ");
-                Artisan::call("maker:views $resource header ");
-                Artisan::call("maker:views $resource footer ");
-                Artisan::call("maker:views $resource index ");
+                Artisan::call("maker:views backoffice layout backoffice ");
+                Artisan::call("maker:views backoffice header backoffice");
+                Artisan::call("maker:views backoffice footer backoffice");
+                Artisan::call("maker:views $resource index backoffice");
             }
         }
 

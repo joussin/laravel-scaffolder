@@ -93,6 +93,10 @@ php artisan make:generator Address  --controller
 php artisan make:generator Address  --export --swagger 
 ```
 
+```bash
+php artisan make:generator Address --export  --views
+```
+
 
 
 ```bash

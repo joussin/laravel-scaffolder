@@ -6,10 +6,7 @@
         "summary": "Find all {{ swagger_api_resource_name }}",
         "description": "Returns a single {{ swagger_api_resource_name }}",
         "operationId": "getAll{{ swagger_api_resource_name }}",
-        "parameters": [
 
-
-        ],
         "responses": {
             "200": {
                 "description": "successful operation",
@@ -33,9 +30,9 @@
             "tags": [
                 "{{ swagger_api_resource_name }}"
             ],
-            "summary": "Find all {{ swagger_api_resource_name }}",
-            "description": "Returns a single {{ swagger_api_resource_name }}",
-            "operationId": "getAll{{ swagger_api_resource_name }}",
+            "summary": "create {{ swagger_api_resource_name }}",
+            "description": "create a single {{ swagger_api_resource_name }}",
+            "operationId": "create{{ swagger_api_resource_name }}",
 
 
             "requestBody": {

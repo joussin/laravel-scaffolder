@@ -14,7 +14,7 @@ class ViewMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:views {model} {template}
+    protected $signature = 'maker:views {model} {template} {namespace}
                             {--dest_dir= : copy to src/Generated/resources/views/{dest_dir} }
                             {--move_views_to_resources : copy to laravel resources/views/{dest_dir}}
     ';
@@ -37,6 +37,7 @@ class ViewMakeCommand extends AbstractMakeCommand
     {
         $this->className = Str::studly($this->argument('model'));
         $template = $this->argument('template');
+        $namespace = $this->argument('namespace');
 
         $this->generatedFileName = $template;
         $this->stubFilename = "html/".$template.".blade.php.stub";
@@ -47,6 +48,9 @@ class ViewMakeCommand extends AbstractMakeCommand
         {
             throw new \Exception($this->className . ' not found');
         }
+        $this->replaceData ['{{ namespace_view }}'] = $namespace;
+
+
 
 
         $dest_dir = $this->option('dest_dir');

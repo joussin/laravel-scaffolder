@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('{{ namespace_view }}.layout')
 
 
 @section('content')
