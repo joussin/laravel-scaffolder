@@ -33,6 +33,9 @@ class ControllerMakeCommand extends AbstractMakeCommand
     {
         $this->className = Str::studly($this->argument('model'));
 
+        $this->replaceData ['{{ viewNamespace }}'] = "backoffice";
+        $this->replaceData ['{{ model }}'] = strtolower($this->className) ;
+
 
         return parent::handle();
     }
@@ -45,7 +48,7 @@ class ControllerMakeCommand extends AbstractMakeCommand
 
     protected $classNameSuffix = "Controller";
 
-    protected $stubFilename = "laravel/controller.stub";
+    protected $stubFilename = "controller.stub";
 
 
     protected $classNamespace = "Http\\Controllers";

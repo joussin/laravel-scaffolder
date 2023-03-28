@@ -10,11 +10,11 @@
 </head>
 <body>
 <main>
-    @include('{{ namespace_view }}.header')
+    @include('{{ namespace_view }}layout.header')
 
     @yield('content')
 
-    @include('{{ namespace_view }}.footer')
+    @include('{{ namespace_view }}layout.footer')
 </main>
 
 </body>

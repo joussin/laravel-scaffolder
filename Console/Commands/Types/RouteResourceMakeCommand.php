@@ -13,7 +13,7 @@ class RouteResourceMakeCommand extends AbstractMakeCommand
      * @var string
      */
     protected $signature = 'maker:route-resource {model}
-                            {--route_api : create routes api}
+                            {--route-api : create routes api}
 
     ';
 
@@ -49,7 +49,7 @@ class RouteResourceMakeCommand extends AbstractMakeCommand
 
         $this->generatedFileName = $resourceName . '-routes-resource';
 
-        if ($this->option('route_api') ) {
+        if ($this->option('route-api') ) {
 
             // routes-api
 

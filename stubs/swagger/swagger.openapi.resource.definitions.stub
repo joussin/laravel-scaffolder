@@ -1,0 +1,9 @@
+"{{ swagger_api_resource_name }}": {
+    "type": "object",
+    "properties":
+
+
+        {{ properties_res }}
+
+
+}

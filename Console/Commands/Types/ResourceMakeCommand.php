@@ -12,7 +12,8 @@ class ResourceMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:resource {model}';
+    protected $signature = 'maker:resource {model}
+     {--conf : Create resource from conf}';
 
     /**
      * The console command description.
@@ -31,6 +32,25 @@ class ResourceMakeCommand extends AbstractMakeCommand
     {
         $this->className = Str::studly($this->argument('model'));
 
+        $properties = "";
+
+        if ($this->option('conf')) {
+
+            $scaffold = config('scaffolder');
+
+            $config = $scaffold['resources'][$this->className];
+
+
+            foreach ($config['attributes'] as $name => $data)
+            {
+                $properties .= "           '$name'" . ' => $this->' . $name .',' . PHP_EOL . PHP_EOL;
+            }
+
+        }
+
+        $this->replaceData ['{{ properties }}'] = $properties ;
+
+
         return parent::handle();
     }
 
@@ -42,7 +62,7 @@ class ResourceMakeCommand extends AbstractMakeCommand
 
     protected $classNameSuffix = "Resource";
 
-    protected $stubFilename = "laravel/resource.stub";
+    protected $stubFilename = "resource.stub";
 
     protected $classNamespace = "Http\\Resources";
 

@@ -12,7 +12,8 @@ class FactoryMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:factory {model}';
+    protected $signature = 'maker:factory {model}
+    {--conf : Create factory from conf}';
 
     /**
      * The console command description.
@@ -39,6 +40,24 @@ class FactoryMakeCommand extends AbstractMakeCommand
         $this->replaceData ['{{ factory }}'] = $this->className ;
 
 
+        $this->replaceData ['{{ model }}'] = "\Api\Generated\Models\\" . $this->className ;
+        $properties = "";
+
+        if ($this->option('conf')) {
+            $scaffold = config('scaffolder');
+
+            $config = $scaffold['resources'][$this->className];
+
+            foreach ($config['attributes'] as $name => $data) {
+                if ($name == "id") continue;
+                $default = $data["default"];
+                $default = is_null($default) ? "null" : "'$default'";
+                $properties .= "           '$name'" . ' => ' . $default . "," . PHP_EOL . PHP_EOL;
+            }
+        }
+
+        $this->replaceData ['{{ properties }}'] = $properties ;
+
         return parent::handle();
     }
     protected $generatedFileName = null;
@@ -49,7 +68,7 @@ class FactoryMakeCommand extends AbstractMakeCommand
 
     protected $classNameSuffix = "Factory";
 
-    protected $stubFilename = "laravel/factory.stub";
+    protected $stubFilename = "factory.stub";
 
     protected $classNamespace = "Factories";
 

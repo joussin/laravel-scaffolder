@@ -15,7 +15,7 @@ class ViewMakeCommand extends AbstractMakeCommand
      * @var string
      */
     protected $signature = 'maker:views {model} {template} {namespace}
-                            {--dest_dir= : copy to src/Generated/resources/views/{dest_dir} }
+
                             {--move_views_to_resources : copy to laravel resources/views/{dest_dir}}
     ';
 
@@ -35,6 +35,7 @@ class ViewMakeCommand extends AbstractMakeCommand
      */
     public function handle()
     {
+
         $this->className = Str::studly($this->argument('model'));
         $template = $this->argument('template');
         $namespace = $this->argument('namespace');
@@ -46,28 +47,22 @@ class ViewMakeCommand extends AbstractMakeCommand
             !File::isFile(base_path( self::STUB_PATH . $this->stubFilename))
         )
         {
-            throw new \Exception($this->className . ' not found');
+            throw new \Exception($this->stubFilename . ' not found');
         }
-        $this->replaceData ['{{ namespace_view }}'] = $namespace;
+
+        $this->replaceData ['{{ namespace_view }}'] = $namespace . "/";
 
 
+        $this->classFilePath = self::RESOURCE_DIR .  $namespace . "/". strtolower($this->className) . "/";
 
-
-        $dest_dir = $this->option('dest_dir');
-
-        if ( $dest_dir != "" ) {
-            $this->classFilePath = self::RESOURCE_DIR .  $dest_dir . "/";
-        } else {
-            $dest_dir = strtolower($this->className);
-            $this->classFilePath = self::RESOURCE_DIR .   strtolower($this->className) . "/";
-        }
 
         parent::handle();
 
         if ( $this->option('move_views_to_resources')) {
+
              $this->copy(
                  self::MAIN_PATH . $this->classFilePath,
-                 resource_path("views/" . $dest_dir)
+                 resource_path("views/" . $namespace . "/". strtolower($this->className) . "/")
              );
         }
 

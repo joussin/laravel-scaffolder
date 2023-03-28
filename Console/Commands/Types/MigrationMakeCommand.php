@@ -60,9 +60,28 @@ class MigrationMakeCommand extends AbstractMakeCommand
 
         $this->replaceData ['{{ table }}'] = strtolower($this->className);
 
+        $properties = "";
+
         if ($this->option('migration_action_create') ) {
             $this->action =    "create";
-            $this->stubFilename =    "laravel/migration.create.stub";
+            $this->stubFilename =    "migration.create.stub";
+
+
+            $scaffold = config('scaffolder');
+
+            $config = $scaffold['resources'][$this->className];
+
+            foreach ($config['attributes'] as $name => $data)
+            {
+                if ($name == "id") continue;
+                $db_type = $data['db_type'];
+                // $name
+                $properties .= '$table->'.$db_type.'(\''.$name.'\');' . PHP_EOL. PHP_EOL;
+            }
+
+            $this->replaceData ['{{ properties }}'] = $properties ;
+
+
         }
         elseif ($this->option('migration_update_create') ) {
             $this->action =    "update";

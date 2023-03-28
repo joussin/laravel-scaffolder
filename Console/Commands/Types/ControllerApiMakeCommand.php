@@ -12,7 +12,8 @@ class ControllerApiMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:controller-api {model}';
+    protected $signature = 'maker:controller-api {model}
+    {--conf : controller api}';
 
     /**
      * The console command description.
@@ -31,6 +32,44 @@ class ControllerApiMakeCommand extends AbstractMakeCommand
     {
         $this->className = Str::studly($this->argument('model'));
 
+
+        $properties_post = "";
+        $properties_put = "";
+
+        $resource = "" ;
+        $validationRules = "" ;
+        $model = "" ;
+
+
+        if ($this->option('conf')) {
+
+            $scaffold = config('scaffolder');
+
+            $config = $scaffold['resources'][$this->className];
+
+
+            foreach ($config['attributes'] as $name => $data)
+            {
+                if ($name == "id") continue;
+                $properties_post .= "'$name'".' => $request->post(\''.$name.'\'),' . PHP_EOL. PHP_EOL;
+                $properties_put .= "'$name'" ."," . PHP_EOL. PHP_EOL;
+            }
+
+            $resource = "\Api\Generated\Http\Resources\\" . $this->className."Resource" ;
+            $validationRules = "\Api\Generated\ValidationRules\\" . $this->className."ValidationRules" ;
+            $model = "\Api\Generated\Models\\" . $this->className ;
+
+        }
+
+
+        $this->replaceData ['{{ properties_post }}'] = $properties_post ;
+        $this->replaceData ['{{ properties_put }}'] = $properties_put ;
+
+        $this->replaceData ['{{ model }}'] = $model ;
+        $this->replaceData ['{{ resource }}'] = $resource;
+        $this->replaceData ['{{ validationRules }}'] = $validationRules;
+
+
         return parent::handle();
     }
 
@@ -42,7 +81,7 @@ class ControllerApiMakeCommand extends AbstractMakeCommand
 
     protected $classNameSuffix = "ApiController";
 
-    protected $stubFilename = "laravel/controller.api.stub";
+    protected $stubFilename = "controller.api.stub";
 
 
     protected $classNamespace = "Http\\Controllers";

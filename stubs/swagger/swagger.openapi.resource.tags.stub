@@ -1,0 +1,8 @@
+{
+    "name": "{{ swagger_api_resource_tag_name }}",
+    "description": "{{ swagger_api_resource_tag_name }}",
+    "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+    }
+}

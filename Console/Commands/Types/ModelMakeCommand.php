@@ -12,7 +12,8 @@ class ModelMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:model {model}';
+    protected $signature = 'maker:model {model}
+                            {--conf : Create model from conf}';
 
     /**
      * The console command description.
@@ -29,7 +30,39 @@ class ModelMakeCommand extends AbstractMakeCommand
      */
     public function handle()
     {
-        $this->className = Str::studly($this->argument('model'));
+        $this->className = $this->argument('model');
+
+        $properties = "";
+        $connection = "mysql";
+        $table = strtolower($this->className);
+        $factoryClass = "";
+
+        if ($this->option('conf')) {
+
+            $scaffold = config('scaffolder');
+
+            $config = $scaffold['resources'][$this->className];
+
+
+            foreach ($config['attributes'] as $name => $data)
+            {
+                $properties .= '    protected ' . $data['type'] . ' $' .$name.';' . PHP_EOL. PHP_EOL;
+            }
+
+            $connection = $config['connection'] ;
+            $table = $config['table'] ;
+
+            $factoryClass = 'return \Api\Generated\Database\Factories\\'.$this->className.'Factory::new();' ;
+
+        }
+
+        $this->replaceData ['{{ connection }}'] = $connection;
+        $this->replaceData ['{{ table }}'] = $table;
+        $this->replaceData ['{{ factoryClass }}'] = $factoryClass;
+
+
+        $this->replaceData ['{{ properties }}'] = $properties ;
+
 
         return parent::handle();
     }
@@ -42,7 +75,7 @@ class ModelMakeCommand extends AbstractMakeCommand
 
     protected $classNameSuffix = "";
 
-    protected $stubFilename = "laravel/model.stub";
+    protected $stubFilename = "model.stub";
 
     protected $classNamespace = "Models";
 

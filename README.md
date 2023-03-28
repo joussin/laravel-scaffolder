@@ -20,6 +20,17 @@ a terme il faudra installer :
 joussin/laravel_scaffolder
 
 
+# .env
+
+# --------------------------------------------
+
+
+GENERATED_DIR=Generated
+API_HOST=http://0.0.0.0:4141/api/
+
+ROUTES_RESOURCE=true
+
+
 
 # Models
 
@@ -38,8 +49,17 @@ PaymentNotification
 
 # scaffold
 
-php artisan make:generator Address --model --controller --controller-api  --validation-rules --factory --migration --seeder --swagger --resource --views --route --route-resource
 
+
+## generate:
+
+```bash
+php artisan make:generator-conf
+```
+
+```bash
+php artisan route:list
+```
 
 
 # ------------------------------------ TODO ------------------------------------
@@ -52,63 +72,7 @@ INFO  Request [app/Http/Requests/UpdateAddressRequest.php] created successfully.
 INFO  Policy [app/Policies/AddressPolicy.php] created successfully.
 
 
-
-### Front:
  
-model   --bo
-
- 
-# ------------------------------------ TEST ------------------------------------
-
-
-## SANS  --export:
-php artisan make:generator Address --model --controller --controller-api  --validation-rules --factory --migration --seeder --swagger --resource --views --route --route-resource
-
-
-##  --export:
-php artisan make:generator Address --export --model --controller --controller-api  --validation-rules --factory --migration --seeder --swagger --resource --views --route --route-resource
-
-
-
-
-````bash
-php artisan  maker:views Location layout --move_views_to_resources
-php artisan  maker:views Location header --move_views_to_resources
-php artisan  maker:views Location footer --move_views_to_resources
-php artisan  maker:views Location index --move_views_to_resources
-````
-
-```bash
-php artisan  maker:controller Location    
-php artisan  maker:controller Location --controller_api   
-```
-
-
-```bash
-php artisan make:generator Address  --controller 
-```
-
-
-```bash
-php artisan make:generator Address  --export --swagger 
-```
-
-```bash
-php artisan make:generator Address --export  --views
-```
-
-
-
-```bash
-php artisan route:list
-```
-
-
-php artisan make:generator Address  --swagger --export
-
-
-
-
 # ------------------------------------ PACKAGE ------------------------------------
 
 
@@ -143,4 +107,5 @@ https://novapackages.com/packages/cloudstudio/resource-generator
 
 
 https://krato.github.io/resource-generator-docs/
+
 

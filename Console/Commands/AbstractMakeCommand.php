@@ -8,7 +8,7 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
 
 
-class AbstractMakeCommand  extends GeneratorCommand implements MakeCommandInterface
+abstract class AbstractMakeCommand  extends GeneratorCommand
 {
 
 

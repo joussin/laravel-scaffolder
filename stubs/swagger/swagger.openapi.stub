@@ -24,14 +24,7 @@
         }
     ],
     "tags": [
-        {
-            "name": "{{ swagger_api_resource_1_name }}",
-            "description": "Grant {{ swagger_api_resource_1_name }} access",
-            "externalDocs": {
-                "description": "Find out more",
-                "url": "http://swagger.io"
-            }
-        }
+{{ tags }}
     ],
 
     "security": [
@@ -48,7 +41,7 @@
     },
     "components": {
         "schemas": {
-
+{{ definitions }}
         },
 
         "securitySchemes": {

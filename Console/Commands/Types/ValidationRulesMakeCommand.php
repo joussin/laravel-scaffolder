@@ -14,7 +14,8 @@ class ValidationRulesMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:validation-rules {model}';
+    protected $signature = 'maker:validation-rules {model}
+    {--conf : validation-rules from data}';
 
     /**
      * The console command description.
@@ -30,6 +31,25 @@ class ValidationRulesMakeCommand extends AbstractMakeCommand
     {
 
         $this->className = Str::studly($this->argument('model'));
+
+        $rules = '';
+
+        if ($this->option('conf')) {
+
+            $scaffold = config('scaffolder');
+
+            $config = $scaffold['resources'][$this->className];
+
+            foreach ($config['attributes'] as $name => $data)
+            {
+                $rule = $data['rules'];
+                $rules .= "'$name' => " . "'$rule'" . ',' . PHP_EOL. PHP_EOL;
+            }
+
+        }
+
+        $this->replaceData ['{{ rules }}'] = $rules ;
+
 
         return parent::handle();
     }

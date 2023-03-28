@@ -4,6 +4,7 @@ namespace Api\Providers;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class PackageServiceProvider extends ServiceProvider
 {
@@ -18,7 +19,7 @@ class PackageServiceProvider extends ServiceProvider
         $this->commands(
             [
                 \Api\Console\Commands\GenerateFromConfigMakeCommand::class,
-                \Api\Console\Commands\MainGeneratorMakeCommand::class,
+
                 \Api\Console\Commands\Types\ValidationRulesMakeCommand::class,
                 \Api\Console\Commands\Types\ModelMakeCommand::class,
                 \Api\Console\Commands\Types\ControllerMakeCommand::class,
@@ -43,30 +44,21 @@ class PackageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->mergeConfigFrom(base_path("src/config/scaffolder.php"), "scaffolder");
 
-        $this->loadRoutes();
-
-
-
-    }
-
-
-    public function loadRoutes()
-    {
-        $generated_route_dir = "src/Generated/routes/";
-
-        if(  File::isDirectory($generated_route_dir))
-        {
-            $routesFiles = File::files(base_path($generated_route_dir));
-
-
+        $generated_route_dir = base_path("src/Generated/routes/");
+        if (File::isDirectory($generated_route_dir)) {
+            $routesFiles = File::files(($generated_route_dir));
             foreach ($routesFiles as $routesFile) {
-                $this->loadRoutesFrom(
-                    $routesFile
-                );
+
+                if(env('ROUTES_RESOURCE') && Str::contains($routesFile->getRelativePathname(), "resource"))
+                {
+                    $this->loadRoutesFrom(base_path('src/Generated/routes/' . $routesFile->getRelativePathname()));
+
+                }
+
             }
-
         }
-
     }
+
 }

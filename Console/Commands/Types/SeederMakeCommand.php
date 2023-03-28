@@ -3,6 +3,7 @@
 namespace Api\Console\Commands\Types;
 
 use Api\Console\Commands\AbstractMakeCommand;
+
 use Illuminate\Support\Str;
 
 class SeederMakeCommand extends AbstractMakeCommand
@@ -31,6 +32,10 @@ class SeederMakeCommand extends AbstractMakeCommand
     {
         $this->className = Str::studly($this->argument('model'));
 
+        $this->replaceData ['{{ model }}'] =  "\Api\Generated\Models\\" . $this->className;
+
+        $this->replaceData ['{{ datas }}'] =  "'test'       => 'test',";
+
         return parent::handle();
     }
 
@@ -42,7 +47,7 @@ class SeederMakeCommand extends AbstractMakeCommand
 
     protected $classNameSuffix = "Seeder";
 
-    protected $stubFilename = "laravel/seeder.stub";
+    protected $stubFilename = "seeder.stub";
 
     protected $classNamespace = "Database\\Seeders";
 
