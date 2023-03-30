@@ -56,7 +56,7 @@ php artisan make:generator-conf --fresh
 php artisan maker:migrate --fresh --seed
 ```
 
-php artisan vendor:publish --provider="Api\Providers\PublishesServiceProvider"  
+php artisan vendor:publish --provider="Api\Providers\PublishServiceProvider"
 
 
 ```bash

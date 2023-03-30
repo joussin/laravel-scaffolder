@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 
-class PublishesServiceProvider extends ServiceProvider
+class PublishServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.

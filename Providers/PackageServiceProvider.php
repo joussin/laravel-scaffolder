@@ -37,7 +37,7 @@ class PackageServiceProvider extends ServiceProvider
             ]
         );
 
-        $this->app->register(PublishesServiceProvider::class);
+        $this->app->register(PublishServiceProvider::class);
 
     }
 
