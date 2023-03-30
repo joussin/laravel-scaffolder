@@ -13,6 +13,8 @@ class {{ class }} extends Model
 
     protected $table = "{{ table }}";
 
+    protected $fillable = [{{ fillable }}];
+
 {{ properties }}
 
     protected static function newFactory()

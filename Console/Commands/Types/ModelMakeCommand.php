@@ -32,6 +32,7 @@ class ModelMakeCommand extends AbstractMakeCommand
     {
         $this->className = $this->argument('model');
 
+        $fillable = "";
         $properties = "";
         $connection = "mysql";
         $table = strtolower($this->className);
@@ -47,6 +48,7 @@ class ModelMakeCommand extends AbstractMakeCommand
             foreach ($config['attributes'] as $name => $data)
             {
                 $properties .= '    protected ' . $data['type'] . ' $' .$name.';' . PHP_EOL. PHP_EOL;
+                $fillable .= "'$name',";
             }
 
             $connection = $config['connection'] ;
@@ -62,6 +64,7 @@ class ModelMakeCommand extends AbstractMakeCommand
 
 
         $this->replaceData ['{{ properties }}'] = $properties ;
+        $this->replaceData ['{{ fillable }}'] = $fillable ;
 
 
         return parent::handle();
