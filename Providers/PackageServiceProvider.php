@@ -42,6 +42,8 @@ class PackageServiceProvider extends ServiceProvider
             ]
         );
 
+        $this->app->register(PublishesServiceProvider::class);
+
     }
 
     /**
@@ -56,9 +58,11 @@ class PackageServiceProvider extends ServiceProvider
         JsonResource::withoutWrapping(); // pour les resources
 
         //config
-        $this->mergeConfigFrom(base_path("src/config/scaffolder.php"), "scaffolder");
+        $this->mergeConfigFrom(base_path("src/config/laravel-scaffolder.php"), "laravel-scaffolder");
 
         // routes
+        $this->loadRoutesFrom(base_path('src/Generated/routes/routes-swagger.php' ));
+
         $generated_route_dir = base_path("src/Generated/routes/");
         if (File::isDirectory($generated_route_dir)) {
             $routesFiles = File::files(($generated_route_dir));

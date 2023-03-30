@@ -35,7 +35,7 @@ class GenerateFromConfigMakeCommand extends Command
             );
         }
 
-        $scaffold = config('scaffolder');
+        $scaffold = config('laravel-scaffolder');
 
         $resources = $scaffold['resources'];
 

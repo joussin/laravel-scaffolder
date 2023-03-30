@@ -1,0 +1,7 @@
+<?php
+
+
+Route::get('/', function () {
+    return redirect()->to('/laravel-scaffolder/api/docs/index.html');
+});
+

@@ -56,6 +56,9 @@ php artisan make:generator-conf --fresh
 php artisan maker:migrate --fresh --seed
 ```
 
+php artisan vendor:publish --provider="Api\Providers\PublishesServiceProvider"  
+
+
 ```bash
 php artisan serve --port=4141
 ```
@@ -74,6 +77,15 @@ INFO  Request [app/Http/Requests/UpdateAddressRequest.php] created successfully.
 INFO  Policy [app/Policies/AddressPolicy.php] created successfully.
 
 
+views html
+
+migrations foreign keys
+
+resources  foreign keys
+
+api auth
+
+swagger auth
  
 # ------------------------------------ PACKAGE ------------------------------------
 
@@ -96,6 +108,7 @@ php artisan vendor:publish --provider="CrestApps\CodeGenerator\CodeGeneratorServ
 
 
 
+
 # package jiejunf/laravel-resourceful:
 
 https://packagist.org/packages/jiejunf/laravel-resourceful
@@ -106,8 +119,6 @@ https://packagist.org/packages/jiejunf/laravel-resourceful
 
 https://novapackages.com/packages/cloudstudio/resource-generator
 
-
-
 https://krato.github.io/resource-generator-docs/
-
+https://krato.github.io/resource-generator-docs/1.0/how-to/fields.html
 

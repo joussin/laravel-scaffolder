@@ -36,7 +36,7 @@ class ValidationRulesMakeCommand extends AbstractMakeCommand
 
         if ($this->option('conf')) {
 
-            $scaffold = config('scaffolder');
+            $scaffold = config('laravel-scaffolder');
 
             $config = $scaffold['resources'][$this->className];
 

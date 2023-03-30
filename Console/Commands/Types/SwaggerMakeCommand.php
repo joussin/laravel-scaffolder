@@ -42,7 +42,7 @@ class SwaggerMakeCommand extends AbstractMakeCommand
         $this->replaceData ['{{ swagger_api_security_oauth2_scope_1_description }}'] = "route:view scope" ;
 
 
-        $scaffold = config('scaffolder');
+        $scaffold = config('laravel-scaffolder');
 
         $resources = $scaffold['resources'];
 
@@ -146,6 +146,13 @@ class SwaggerMakeCommand extends AbstractMakeCommand
             base_path(self::MAIN_PATH . "public/api/docs/index.html"),
             file_get_contents(base_path(self::STUB_PATH . "swagger/swagger.index.html"))
         );
+
+        $this->getFiles()->put(
+            base_path( self::MAIN_PATH . "routes/routes-swagger.php"),
+            file_get_contents(base_path(self::STUB_PATH . "swagger/routes-swagger.stub"))
+        );
+
+
 
 
         if ($this->option('swagger_to_public') ) {
