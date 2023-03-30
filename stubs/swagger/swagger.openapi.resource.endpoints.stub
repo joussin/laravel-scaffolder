@@ -40,12 +40,8 @@
                 "content": {
                     "application/json": {
                         "schema": {
-                            "example" : {
-                                "test" : 1,
-                                "test_3" : 1,
-                                "test8" : 1,
-                                "testkxb lfd" : 1
-                            }
+
+                             "$ref": "#/components/schemas/{{ swagger_api_resource_name }}PostPut"
                         }
                     }
                 },
@@ -96,6 +92,18 @@
             }
 
         ],
+        "requestBody": {
+            "description": "Update a new {{ swagger_api_resource_name }}",
+            "content": {
+                "application/json": {
+                    "schema": {
+
+                         "$ref": "#/components/schemas/{{ swagger_api_resource_name }}PostPut"
+                    }
+                }
+            },
+            "required": true
+        },
         "responses": {
             "200": {
                 "description": "successful operation",

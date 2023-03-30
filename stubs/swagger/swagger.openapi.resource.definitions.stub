@@ -6,4 +6,13 @@
         {{ properties_res }}
 
 
+},
+"{{ swagger_api_resource_name_post_put }}": {
+    "type": "object",
+    "properties":
+
+
+        {{ properties_res_post_put }}
+
+
 }

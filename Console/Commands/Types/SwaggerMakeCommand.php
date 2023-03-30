@@ -87,19 +87,27 @@ class SwaggerMakeCommand extends AbstractMakeCommand
 
 
             $resource_partial_render = str_replace("{{ swagger_api_resource_name }}", ucfirst(strtolower($resource)), $resource_partial);
+            $resource_partial_render = str_replace("{{ swagger_api_resource_name_post_put }}", ucfirst(strtolower($resource))."PostPut", $resource_partial_render);
 
 
 
             $properties = [];
+            $propertiesPostPut = [];
 
             foreach ($resourceData['attributes'] as $name => $data)
             {
                 $properties[$name] = ["type" => $data['type']];
+                if($name != "id")
+                {
+                    $propertiesPostPut[$name] = ["type" => $data['type']];
+                }
             }
 
             $props = json_encode($properties, JSON_PRETTY_PRINT);
+            $propsPostPut = json_encode($propertiesPostPut, JSON_PRETTY_PRINT);
 
             $resource_partial_render = str_replace("{{ properties_res }}", $props, $resource_partial_render);
+            $resource_partial_render = str_replace("{{ properties_res_post_put }}", $propsPostPut, $resource_partial_render);
             $resource_partial_render = str_replace(
                 [
                     'int',
