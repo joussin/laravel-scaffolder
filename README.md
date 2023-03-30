@@ -66,6 +66,8 @@ PaymentNotification
 php artisan make:generator-conf
 php artisan make:generator-conf --fresh
 php artisan maker:migrate --fresh --seed
+php artisan serve --port=4141
+
 ```
 
 ```bash

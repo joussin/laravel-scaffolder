@@ -3,9 +3,11 @@
 namespace Api\Providers;
 
 use Api\Generated\Database\Seeders\AddressSeeder;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 
@@ -49,6 +51,10 @@ class PackageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
+
+        JsonResource::withoutWrapping(); // pour les resources
+
         //config
         $this->mergeConfigFrom(base_path("src/config/scaffolder.php"), "scaffolder");
 
