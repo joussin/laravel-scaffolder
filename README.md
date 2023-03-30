@@ -31,6 +31,15 @@ API_HOST=http://0.0.0.0:4141/api/
 ROUTES_RESOURCE=true
 
 
+# migrate
+
+php artisan migrate --path=/src/Generated/Database/Migrations
+php artisan migrate:fresh --path=/src/Generated/Database/Migrations
+
+php artisan maker:migrate --fresh --seed
+
+php artisan maker:seed
+
 
 # Models
 
@@ -55,6 +64,8 @@ PaymentNotification
 
 ```bash
 php artisan make:generator-conf
+php artisan make:generator-conf --fresh
+php artisan maker:migrate --fresh --seed
 ```
 
 ```bash

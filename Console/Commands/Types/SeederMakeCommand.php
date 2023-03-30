@@ -13,7 +13,7 @@ class SeederMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:seeder {model}';
+    protected $signature = 'maker:seeder {model} {--conf}';
 
     /**
      * The console command description.
@@ -34,7 +34,23 @@ class SeederMakeCommand extends AbstractMakeCommand
 
         $this->replaceData ['{{ model }}'] =  "\Api\Generated\Models\\" . $this->className;
 
-        $this->replaceData ['{{ datas }}'] =  "'test'       => 'test',";
+
+        $properties = "";
+
+        if ($this->option('conf')) {
+            $scaffold = config('scaffolder');
+
+            $config = $scaffold['resources'][$this->className];
+
+            foreach ($config['attributes'] as $name => $data) {
+                if ($name == "id") continue;
+                $default = $data["default_seeder"];
+                $default = is_null($default) ? "null" : "'$default'";
+                $properties .= "           '$name'" . ' => ' . $default . "," . PHP_EOL . PHP_EOL;
+            }
+        }
+
+        $this->replaceData ['{{ datas }}'] = $properties ;
 
         return parent::handle();
     }

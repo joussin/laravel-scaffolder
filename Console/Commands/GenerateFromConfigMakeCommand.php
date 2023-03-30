@@ -4,6 +4,7 @@ namespace Api\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Attribute\AsCommand;
 
@@ -14,7 +15,7 @@ class GenerateFromConfigMakeCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'make:generator-conf';
+    protected $signature = 'make:generator-conf {--fresh}';
 
 
     /**
@@ -28,6 +29,12 @@ class GenerateFromConfigMakeCommand extends Command
 
     public function handle()
     {
+        if ($this->option('fresh')) {
+            File::deleteDirectory(
+                base_path("src/Generated/")
+            );
+        }
+
         $scaffold = config('scaffolder');
 
         $resources = $scaffold['resources'];
@@ -142,6 +149,9 @@ class GenerateFromConfigMakeCommand extends Command
             $cmd = "php artisan maker:views layout footer backoffice --move_views_to_resources";
             shell_exec($cmd);
 
+            $cmd = "php artisan maker:views layout home backoffice --move_views_to_resources";
+            shell_exec($cmd);
+
             $cmd = "php artisan maker:views $resource index backoffice --move_views_to_resources";
             shell_exec($cmd);
 
@@ -167,7 +177,7 @@ class GenerateFromConfigMakeCommand extends Command
 
             /** ------------------------------------------ */
 
-            $cmd = "php artisan maker:seeder $resource ";
+            $cmd = "php artisan maker:seeder $resource  --conf";
 
             shell_exec($cmd);
 

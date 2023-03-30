@@ -2,6 +2,9 @@
 
 namespace Api\Providers;
 
+use Api\Generated\Database\Seeders\AddressSeeder;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -18,6 +21,8 @@ class PackageServiceProvider extends ServiceProvider
 
         $this->commands(
             [
+                \Api\Console\Commands\Migrations\MigrationsMakeCommand::class,
+
                 \Api\Console\Commands\GenerateFromConfigMakeCommand::class,
 
                 \Api\Console\Commands\Types\ValidationRulesMakeCommand::class,
@@ -44,8 +49,10 @@ class PackageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //config
         $this->mergeConfigFrom(base_path("src/config/scaffolder.php"), "scaffolder");
 
+        // routes
         $generated_route_dir = base_path("src/Generated/routes/");
         if (File::isDirectory($generated_route_dir)) {
             $routesFiles = File::files(($generated_route_dir));
@@ -59,6 +66,8 @@ class PackageServiceProvider extends ServiceProvider
 
             }
         }
+
+
     }
 
 }
