@@ -1,6 +1,6 @@
 {
     "name": "joussin/laravel-scaffolder",
-    "description": "A laravel scaffolder.",
+    "description": "A laravel project scaffolder.",
     "keywords": [
         "laravel",
         "scaffolder"
@@ -42,7 +42,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SJoussin\\LaravelScaffolder\\": "laravel-scaffolder/src/"
+            "SJoussin\\LaravelScaffolder\\": "src/"
         },
         "files": [
 
@@ -57,6 +57,6 @@
     "scripts": {
     },
     "support": {
-        "docs": "https://flareapp.io/docs/ignition-for-laravel/introduction"
+        "docs": "https://github.com/joussin/laravel-scaffolder/blob/as_pkg/README.md"
     }
 }
