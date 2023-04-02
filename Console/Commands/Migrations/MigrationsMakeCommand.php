@@ -10,9 +10,6 @@ use Illuminate\Support\Facades\File;
 class MigrationsMakeCommand extends Command
 {
 
-    protected const MIGRATIONS_PATH = "src/Generated/Database/Migrations/";
-    protected const SEEDERS_PATH = "src/Generated/Database/Seeders/";
-    protected const SEEDERS_NAMESPACE = "\Api\Generated\Database\Seeders\\";
 
     /**
      * The name and signature of the console command.
@@ -75,10 +72,15 @@ class MigrationsMakeCommand extends Command
 
     public function loopOnSeeders(string $command)
     {
-        $this->loopOn(self::SEEDERS_PATH, function ($file) use ($command) {
+        $seeders_path = \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . "Database/Seeders/";
+
+        $seeders_namespace = "\\" . \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE'] . "Database\Seeders\\";
+
+
+        $this->loopOn($seeders_path, function ($file) use ($command, $seeders_namespace) {
             $seedClassName = str_replace(".php", "", $file->getFilename());
 
-            $seedClass = self::SEEDERS_NAMESPACE . $seedClassName;
+            $seedClass = $seeders_namespace . $seedClassName;
 
             $this->info("seeder file : " . $seedClass . PHP_EOL);
 
@@ -92,8 +94,11 @@ class MigrationsMakeCommand extends Command
     {
         $count = 0;
 
-        $this->loopOn(self::MIGRATIONS_PATH, function ($file) use ($command, $fresh, &$count) {
-            $this->info("$count) migrate file : " . self::MIGRATIONS_PATH . $file->getFilename() . PHP_EOL);
+        $migrations_path = \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . "Database/Migrations/";
+
+
+        $this->loopOn($migrations_path, function ($file) use ($command, $fresh, &$count, $migrations_path) {
+            $this->info("$count) migrate file : " . $migrations_path . $file->getFilename() . PHP_EOL);
 
             $commandSuffix = "";
 
@@ -102,7 +107,7 @@ class MigrationsMakeCommand extends Command
             }
 
             Artisan::call($command . $commandSuffix, [
-                "--path" => self::MIGRATIONS_PATH . $file->getFilename()
+                "--path" => $migrations_path . $file->getFilename()
             ]);
 
 

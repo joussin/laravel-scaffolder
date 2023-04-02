@@ -67,9 +67,7 @@ class MigrationMakeCommand extends AbstractMakeCommand
             $this->stubFilename =    "migration.create.stub";
 
 
-            $scaffold = config('laravel-scaffolder');
-
-            $config = $scaffold['resources'][$this->className];
+            $config = \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['resources'][$this->className];
 
             foreach ($config['attributes'] as $name => $data)
             {

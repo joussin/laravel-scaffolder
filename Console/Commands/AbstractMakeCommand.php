@@ -12,15 +12,8 @@ abstract class AbstractMakeCommand  extends GeneratorCommand
 {
 
 
-    protected const MAIN_PATH = "src/Generated/";
 
-    protected const ROOT_NAMESPACE = 'App\\';
-
-    protected const MAIN_NAMESPACE = 'Api\\Generated\\';
-
-    protected const STUB_PATH = "src/stubs/";
-
-// --------
+    // -------------TO-OVERRIDE-BY-MAKER-COMMAND-------------------
 
     protected $generatedFileName = null;
 
@@ -34,50 +27,17 @@ abstract class AbstractMakeCommand  extends GeneratorCommand
 
     protected $stubFilename;  // "validationRules.stub";
 
-
     protected $classNamespace; //
 
-    protected $classFilePath; //  "ValidationRules/" "Http/Controllers/" ...;
+    protected $classFilePath;//  "ValidationRules/" "Http/Controllers/" ...;
 
 
-
-    protected function getStub()
-    {
-        return base_path( self::STUB_PATH . $this->stubFilename);
-    }
-
-    public function getGeneratedClassPath()
-    {
-        if( !is_null($this->generatedFileName))
-        {
-            return base_path(self::MAIN_PATH . $this->classFilePath  . $this->generatedFileName . $this->fileExtension);
-        }
-
-        $this->generatedFileName = $this->className . $this->classNameSuffix;
-
-       return base_path(self::MAIN_PATH . $this->classFilePath  . $this->generatedFileName . $this->fileExtension);
-    }
-
-
-
-    /**
-     * @return array
-     */
-    public function getReplaceData(): array
-    {
-        $this->replaceData ['{{ rootNamespace }}'] = self::ROOT_NAMESPACE ;
-        $this->replaceData ['{{ namespace }}'] = self::MAIN_NAMESPACE . $this->classNamespace;
-        $this->replaceData ['{{ class }}'] = $this->className . $this->classNameSuffix;
-
-        return $this->replaceData;
-    }
-
-
+    // ----------------------------------------------------------------------
 
     public function handle()
     {
 
-        $this->makeDirectory(      base_path(self::MAIN_PATH . $this->classFilePath  ));
+        $this->makeDirectory(  \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . $this->classFilePath    );
 
 
         $this->getFiles()->put(
@@ -88,6 +48,34 @@ abstract class AbstractMakeCommand  extends GeneratorCommand
         return Command::SUCCESS;
     }
 
+
+
+    protected function getStub()
+    {
+        return \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['STUB_PATH'] . $this->stubFilename;
+    }
+
+    public function getGeneratedClassPath()
+    {
+        if( !is_null($this->generatedFileName))
+        {
+            return (\Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . $this->classFilePath  . $this->generatedFileName . $this->fileExtension);
+        }
+
+        $this->generatedFileName = $this->className . $this->classNameSuffix;
+
+       return (\Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . $this->classFilePath  . $this->generatedFileName . $this->fileExtension);
+    }
+
+
+    public function getReplaceData(): array
+    {
+        $this->replaceData ['{{ rootNamespace }}'] = \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['ROOT_NAMESPACE'] ;
+        $this->replaceData ['{{ namespace }}'] = \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE'] . $this->classNamespace;
+        $this->replaceData ['{{ class }}'] = $this->className . $this->classNameSuffix;
+
+        return $this->replaceData;
+    }
 
     public function copy(string $from, string $to)
     {
@@ -105,8 +93,6 @@ abstract class AbstractMakeCommand  extends GeneratorCommand
 
         return $path;
     }
-
-
 
 
     protected function buildClass($name)

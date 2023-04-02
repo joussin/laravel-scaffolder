@@ -4,7 +4,6 @@ namespace Api\Console\Commands\Types;
 
 use Api\Console\Commands\AbstractMakeCommand;
 use Illuminate\Support\Str;
-use Symfony\Component\Console\Attribute\AsCommand;
 
 
 class ValidationRulesMakeCommand extends AbstractMakeCommand
@@ -15,7 +14,7 @@ class ValidationRulesMakeCommand extends AbstractMakeCommand
      * @var string
      */
     protected $signature = 'maker:validation-rules {model}
-    {--conf : validation-rules from data}';
+    {--conf : validation-rules from conf data}';
 
     /**
      * The console command description.
@@ -36,9 +35,7 @@ class ValidationRulesMakeCommand extends AbstractMakeCommand
 
         if ($this->option('conf')) {
 
-            $scaffold = config('laravel-scaffolder');
-
-            $config = $scaffold['resources'][$this->className];
+            $config = \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['resources'][$this->className];
 
             foreach ($config['attributes'] as $name => $data)
             {

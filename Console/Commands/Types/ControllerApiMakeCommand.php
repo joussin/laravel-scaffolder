@@ -13,7 +13,7 @@ class ControllerApiMakeCommand extends AbstractMakeCommand
      * @var string
      */
     protected $signature = 'maker:controller-api {model}
-    {--conf : controller api}';
+    {--conf : : Create controller api from conf}';
 
     /**
      * The console command description.
@@ -43,9 +43,7 @@ class ControllerApiMakeCommand extends AbstractMakeCommand
 
         if ($this->option('conf')) {
 
-            $scaffold = config('laravel-scaffolder');
-
-            $config = $scaffold['resources'][$this->className];
+            $config = \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['resources'][$this->className];
 
 
             foreach ($config['attributes'] as $name => $data)
@@ -55,9 +53,9 @@ class ControllerApiMakeCommand extends AbstractMakeCommand
                 $properties_put .= "'$name'" ."," . PHP_EOL. PHP_EOL;
             }
 
-            $resource = "\Api\Generated\Http\Resources\\" . $this->className."Resource" ;
-            $validationRules = "\Api\Generated\ValidationRules\\" . $this->className."ValidationRules" ;
-            $model = "\Api\Generated\Models\\" . $this->className ;
+            $resource = "\\" . \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE'] . "Http\Resources\\" . $this->className."Resource" ;
+            $validationRules = "\\" . \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE'] . "ValidationRules\\" . $this->className."ValidationRules" ;
+            $model = "\\" . \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE'] . "Models\\" . $this->className ;
 
         }
 

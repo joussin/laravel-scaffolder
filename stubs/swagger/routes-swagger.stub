@@ -2,6 +2,6 @@
 
 
 Route::get('/', function () {
-    return redirect()->to('/laravel-scaffolder/api/docs/index.html');
+    return redirect()->to('/{{ package_config_key }}/api/docs/index.html');
 });
 

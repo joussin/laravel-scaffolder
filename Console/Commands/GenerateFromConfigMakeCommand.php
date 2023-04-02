@@ -3,13 +3,13 @@
 namespace Api\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
-use Symfony\Component\Console\Attribute\AsCommand;
 
 class GenerateFromConfigMakeCommand extends Command
 {
+
+
+
     /**
      * The name and signature of the console command.
      *
@@ -23,28 +23,26 @@ class GenerateFromConfigMakeCommand extends Command
      *
      * @var string
      */
-    protected $description = 'conf gene';
-
+    protected $description = 'generator project from config file';
 
 
     public function handle()
     {
+
         if ($this->option('fresh')) {
             File::deleteDirectory(
-                base_path("src/Generated/")
+                \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH']
             );
         }
 
-        $scaffold = config('laravel-scaffolder');
 
-        $resources = $scaffold['resources'];
+        $resources = \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['resources'];
 
-        foreach ($resources as $resource => $resourceData)
-        {
+        $package_key = \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfigKey();
 
-//            $cmd = "php artisan make:generator $resource --export --model --views --controller --controller-api  --validation-rules --factory --migration --seeder --swagger --resource --route --route-api --route-resource";
+        foreach ($resources as $resource => $resourceData) {
 
-            /** ------------------------------------------ */
+            // ------------------------------------------
 
             $cmd = "php artisan maker:validation-rules $resource --conf";
 
@@ -52,7 +50,8 @@ class GenerateFromConfigMakeCommand extends Command
 
             echo "validation-rules $resource" . PHP_EOL;
 
-            /** ------------------------------------------ */
+
+            // ------------------------------------------
 
             $cmd = "php artisan maker:factory $resource --conf";
 
@@ -60,7 +59,7 @@ class GenerateFromConfigMakeCommand extends Command
 
             echo "factory $resource" . PHP_EOL;
 
-            /** ------------------------------------------ */
+            // ------------------------------------------
 
             $cmd = "php artisan maker:resource $resource --conf";
 
@@ -68,7 +67,7 @@ class GenerateFromConfigMakeCommand extends Command
 
             echo "resource $resource" . PHP_EOL;
 
-            /** ------------------------------------------ */
+            // ------------------------------------------
 
             $cmd = "php artisan maker:model $resource --conf";
 
@@ -77,7 +76,7 @@ class GenerateFromConfigMakeCommand extends Command
             echo "model $resource" . PHP_EOL;
 
 
-            /** ------------------------------------------ */
+            // ------------------------------------------
 
             $cmd = "php artisan maker:route $resource ";
 
@@ -91,7 +90,7 @@ class GenerateFromConfigMakeCommand extends Command
 
             echo "route api $resource" . PHP_EOL;
 
-            /** ------------------------------------------ */
+            // ------------------------------------------
 
             $cmd = "php artisan maker:route-resource $resource";
 
@@ -107,17 +106,7 @@ class GenerateFromConfigMakeCommand extends Command
             echo "route-resource api $resource" . PHP_EOL;
 
 
-            /** ------------------------------------------ */
-
-            $cmd = "php artisan maker:controller $resource";
-
-            shell_exec($cmd);
-
-            echo "controller $resource" . PHP_EOL;
-
-
-
-            /** ------------------------------------------ */
+            // ------------------------------------------
 
             $cmd = "php artisan maker:controller-api $resource --conf";
 
@@ -126,48 +115,55 @@ class GenerateFromConfigMakeCommand extends Command
             echo "controller-api $resource" . PHP_EOL;
 
 
+            // ------------------------------------------
 
-            /** ------------------------------------------ */
-
-            $cmd = "php artisan maker:swagger --swagger_to_public";
+            $cmd = "php artisan maker:swagger";
 
             shell_exec($cmd);
 
             echo "swagger $resource" . PHP_EOL;
 
 
+            // ------------------------------------------
 
-            /** ------------------------------------------ */
-
-            $cmd = "php artisan maker:views layout layout backoffice --move_views_to_resources";
+            $cmd = "php artisan maker:controller $resource $package_key::backoffice";
 
             shell_exec($cmd);
 
-            $cmd = "php artisan maker:views layout header backoffice --move_views_to_resources";
+            echo "controller $resource" . PHP_EOL;
+
+
+            // ------------------------------------------
+
+            $cmd = "php artisan maker:views layout layout backoffice $package_key";
+
             shell_exec($cmd);
 
-            $cmd = "php artisan maker:views layout footer backoffice --move_views_to_resources";
+            $cmd = "php artisan maker:views layout header backoffice $package_key";
             shell_exec($cmd);
 
-            $cmd = "php artisan maker:views layout home backoffice --move_views_to_resources";
+            $cmd = "php artisan maker:views layout footer backoffice $package_key";
             shell_exec($cmd);
 
-            $cmd = "php artisan maker:views $resource index backoffice --move_views_to_resources";
+            $cmd = "php artisan maker:views layout home backoffice $package_key";
             shell_exec($cmd);
 
-            $cmd = "php artisan maker:views $resource show backoffice --move_views_to_resources";
+            $cmd = "php artisan maker:views $resource index backoffice $package_key";
             shell_exec($cmd);
 
-            $cmd = "php artisan maker:views $resource create backoffice --move_views_to_resources";
+            $cmd = "php artisan maker:views $resource show backoffice $package_key";
             shell_exec($cmd);
 
-            $cmd = "php artisan maker:views $resource edit backoffice --move_views_to_resources";
+            $cmd = "php artisan maker:views $resource create backoffice $package_key";
+            shell_exec($cmd);
+
+            $cmd = "php artisan maker:views $resource edit backoffice $package_key";
             shell_exec($cmd);
 
             echo "views $resource" . PHP_EOL;
 
 
-            /** ------------------------------------------ */
+            // ------------------------------------------
 
             $cmd = "php artisan maker:migration $resource --migration_action_create";
 
@@ -175,7 +171,7 @@ class GenerateFromConfigMakeCommand extends Command
 
             echo "migration $resource" . PHP_EOL;
 
-            /** ------------------------------------------ */
+            // ------------------------------------------
 
             $cmd = "php artisan maker:seeder $resource  --conf";
 

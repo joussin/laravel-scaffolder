@@ -12,7 +12,7 @@ class ControllerMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:controller {model}
+    protected $signature = 'maker:controller {model} {views_namespace}
 
     ';
 
@@ -33,7 +33,9 @@ class ControllerMakeCommand extends AbstractMakeCommand
     {
         $this->className = Str::studly($this->argument('model'));
 
-        $this->replaceData ['{{ viewNamespace }}'] = "backoffice";
+        $viewNamespace = $this->argument('views_namespace');
+
+        $this->replaceData ['{{ viewNamespace }}'] =  $viewNamespace;
         $this->replaceData ['{{ model }}'] = strtolower($this->className) ;
 
 

@@ -33,20 +33,19 @@ class FactoryMakeCommand extends AbstractMakeCommand
         $this->className = Str::studly($this->argument('model'));
 
         // namespace {{ factoryNamespace }};
-        $this->replaceData ['{{ factoryNamespace }}'] = self::MAIN_NAMESPACE . "Database\\Factories" ;
+        $this->replaceData ['{{ factoryNamespace }}'] = \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE'] . "Database\\Factories" ;
         //\Illuminate\Database\Eloquent\Factories\Factory<\{{ namespacedModel }}>
         $this->replaceData ['{{ namespacedModel }}'] = "" ;
         // class {{ factory }}Factory extends Factory
         $this->replaceData ['{{ factory }}'] = $this->className ;
 
 
-        $this->replaceData ['{{ model }}'] = "\Api\Generated\Models\\" . $this->className ;
+        $this->replaceData ['{{ model }}'] = "\\" . \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE'] . "Models\\" . $this->className ;
         $properties = "";
 
         if ($this->option('conf')) {
-            $scaffold = config('laravel-scaffolder');
 
-            $config = $scaffold['resources'][$this->className];
+            $config = \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['resources'][$this->className];
 
             foreach ($config['attributes'] as $name => $data) {
                 if ($name == "id") continue;

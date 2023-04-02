@@ -14,9 +14,7 @@ class SwaggerMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:swagger
-                            {--swagger_to_public : move swagger files to public dir}
-    ';
+    protected $signature = 'maker:swagger';
 
     /**
      * The console command description.
@@ -42,14 +40,13 @@ class SwaggerMakeCommand extends AbstractMakeCommand
         $this->replaceData ['{{ swagger_api_security_oauth2_scope_1_description }}'] = "route:view scope" ;
 
 
-        $scaffold = config('laravel-scaffolder');
-
-        $resources = $scaffold['resources'];
+        $resources = \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['resources'];
 
 
         $pathsStr = "";
         $tagsStr = "";
         $definitionsStr = "";
+
 
         foreach ($resources as $resource => $resourceData) {
 
@@ -128,8 +125,6 @@ class SwaggerMakeCommand extends AbstractMakeCommand
 
 
 
-
-
         }
 
         $this->replaceData ['{{ swagger_api_resources_paths }}'] = $pathsStr;
@@ -143,24 +138,24 @@ class SwaggerMakeCommand extends AbstractMakeCommand
         parent::handle();
 
         $this->getFiles()->put(
-            base_path(self::MAIN_PATH . "public/api/docs/index.html"),
-            file_get_contents(base_path(self::STUB_PATH . "swagger/swagger.index.html"))
+            (\Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . "public/api/docs/index.html"),
+            file_get_contents( (\Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig() ['STUB_PATH']  . "swagger/swagger.index.html"))
         );
+
+
+
+
+        $routeSwaggerStr = file_get_contents( (\Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig() ['STUB_PATH']  . "swagger/routes-swagger.stub"));
+
+        $routeSwaggerStr = str_replace("{{ package_config_key }}", \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfigKey(), $routeSwaggerStr);
+
 
         $this->getFiles()->put(
-            base_path( self::MAIN_PATH . "routes/routes-swagger.php"),
-            file_get_contents(base_path(self::STUB_PATH . "swagger/routes-swagger.stub"))
+            ( \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . "routes/routes-swagger.php"),
+            $routeSwaggerStr
         );
 
 
-
-
-        if ($this->option('swagger_to_public') ) {
-            $this->copy(
-                self::MAIN_PATH . $this->classFilePath,
-                public_path("api/docs/")
-            );
-        }
 
         return Command::SUCCESS;
     }

@@ -3,6 +3,18 @@
 
 return [
 
+    'ROOT_NAMESPACE' => 'App\\',
+
+    'PACKAGE_DIR_PATH' => base_path(\Api\Providers\ScaffolderConfigServiceProvider::getScaffoldDirname() . "/"),//'src/'
+    'DIST_DIR_NAME' => \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldDistDirname(), //'Generated'
+
+    'DIST_DIR_PATH' => base_path(\Api\Providers\ScaffolderConfigServiceProvider::getScaffoldDirname() . "/" .\Api\Providers\ScaffolderConfigServiceProvider::getScaffoldDistDirname()."/"), //'src/Generated/'
+    'PACKAGE_NAMESPACE' => "Api\\".\Api\Providers\ScaffolderConfigServiceProvider::getScaffoldDistDirname()."\\", //'Api\\Generated\\'
+    'STUB_PATH' => base_path(\Api\Providers\ScaffolderConfigServiceProvider::getScaffoldDirname() . "/stubs/"), // "src/stubs/"
+
+    'USE_ROUTES_RESOURCE' => true,
+
+
     'resources' => [
 
         'Location' => [

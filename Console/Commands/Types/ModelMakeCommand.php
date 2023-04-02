@@ -40,9 +40,7 @@ class ModelMakeCommand extends AbstractMakeCommand
 
         if ($this->option('conf')) {
 
-            $scaffold = config('laravel-scaffolder');
-
-            $config = $scaffold['resources'][$this->className];
+            $config = \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['resources'][$this->className];
 
 
             foreach ($config['attributes'] as $name => $data)
@@ -54,7 +52,9 @@ class ModelMakeCommand extends AbstractMakeCommand
             $connection = $config['connection'] ;
             $table = $config['table'] ;
 
-            $factoryClass = 'return \Api\Generated\Database\Factories\\'.$this->className.'Factory::new();' ;
+            $package_namespace = \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE'];
+
+            $factoryClass = 'return '.$package_namespace.'Database\Factories\\'.$this->className.'Factory::new();' ;
 
         }
 

@@ -13,7 +13,7 @@ class SeederMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:seeder {model} {--conf}';
+    protected $signature = 'maker:seeder {model} {--conf : Create seeder from conf}';
 
     /**
      * The console command description.
@@ -32,15 +32,14 @@ class SeederMakeCommand extends AbstractMakeCommand
     {
         $this->className = Str::studly($this->argument('model'));
 
-        $this->replaceData ['{{ model }}'] =  "\Api\Generated\Models\\" . $this->className;
+        $this->replaceData ['{{ model }}'] = "\\" . \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE'] .  "Models\\" . $this->className;
 
 
         $properties = "";
 
         if ($this->option('conf')) {
-            $scaffold = config('laravel-scaffolder');
 
-            $config = $scaffold['resources'][$this->className];
+            $config = \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['resources'][$this->className];
 
             foreach ($config['attributes'] as $name => $data) {
                 if ($name == "id") continue;

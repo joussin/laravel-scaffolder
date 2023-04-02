@@ -36,9 +36,7 @@ class ResourceMakeCommand extends AbstractMakeCommand
 
         if ($this->option('conf')) {
 
-            $scaffold = config('laravel-scaffolder');
-
-            $config = $scaffold['resources'][$this->className];
+            $config = \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['resources'][$this->className];
 
 
             foreach ($config['attributes'] as $name => $data)

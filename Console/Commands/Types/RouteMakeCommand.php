@@ -37,7 +37,7 @@ class RouteMakeCommand extends AbstractMakeCommand
 
         $resourceName = strtolower($this->className);
 
-        $controllerNamespace = self::MAIN_NAMESPACE  . "Http\\Controllers\\";
+        $controllerNamespace = \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE']   . "Http\\Controllers\\";
 
         $resourceControllerName = $controllerNamespace .  $this->className . "Controller";
 

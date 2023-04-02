@@ -19,17 +19,37 @@ a terme il faudra installer :
 
 joussin/laravel_scaffolder
 
+package composer.json:
+
+"extra": {
+"laravel": {
+"providers": [
+"SJoussin\\LaravelScaffolder\\ScaffolderServiceProvider"
+],
+"aliases": {
+"Flare": "SJoussin\\LaravelScaffolder\\Facades\\Flare"
+}
+}
+},
+"autoload": {
+"psr-4": {
+"SJoussin\\LaravelScaffolder\\": "src"
+},
+"files": [
+"src/helpers.php"
+]
+},
+
+
 
 # .env
 
 # --------------------------------------------
-
-
-GENERATED_DIR=Generated
 API_HOST=http://0.0.0.0:4141/api/
 
-ROUTES_RESOURCE=true
-
+PACKAGE_CONFIG_KEY=laravel-scaffolder
+PACKAGE_DIST_DIR_NAME=Generated
+PACKAGE_DIR_NAME=src
 
 
 
@@ -49,15 +69,22 @@ PaymentNotification
 
 
 # scaffold
- 
 
+Publish config
+```bash
+php artisan vendor:publish --provider="Api\Providers\ConfigServiceProvider"
+```
+
+Generate files from config:
 ```bash
 php artisan make:generator-conf --fresh
 php artisan maker:migrate --fresh --seed
 ```
 
-php artisan vendor:publish --provider="Api\Providers\PublishServiceProvider"
-
+Publish files :  views - swagger - routes
+```bash
+php artisan vendor:publish --provider="Api\Providers\ScaffolderServiceProvider"
+```
 
 ```bash
 php artisan serve --port=4141

@@ -5,6 +5,7 @@ namespace Api\Console\Commands\Types;
 use Api\Console\Commands\AbstractMakeCommand;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class ViewMakeCommand extends AbstractMakeCommand
@@ -14,10 +15,7 @@ class ViewMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:views {model} {template} {namespace}
-
-                            {--move_views_to_resources : copy to laravel resources/views/{dest_dir}}
-    ';
+    protected $signature = 'maker:views {model} {template} {dist_dir} {namespace}';
 
     /**
      * The console command description.
@@ -26,7 +24,7 @@ class ViewMakeCommand extends AbstractMakeCommand
      */
     protected $description = 'views generator command';
 
-    protected const RESOURCE_DIR = "resources/views/";
+
 
     /**
      * Execute the console command.
@@ -38,33 +36,29 @@ class ViewMakeCommand extends AbstractMakeCommand
 
         $this->className = Str::studly($this->argument('model'));
         $template = $this->argument('template');
+        $dist_dir = $this->argument('dist_dir');
         $namespace = $this->argument('namespace');
 
         $this->generatedFileName = $template;
         $this->stubFilename = "html/".$template.".blade.php.stub";
 
         if(
-            !File::isFile(base_path( self::STUB_PATH . $this->stubFilename))
+            !File::isFile( ( \Api\Providers\ScaffolderConfigServiceProvider::getScaffoldConfig()['STUB_PATH'] . $this->stubFilename))
         )
         {
             throw new \Exception($this->stubFilename . ' not found');
         }
 
-        $this->replaceData ['{{ namespace_view }}'] = $namespace . "/";
 
 
-        $this->classFilePath = self::RESOURCE_DIR .  $namespace . "/". strtolower($this->className) . "/";
+        $this->replaceData ['{{ namespace_view }}'] = $namespace . "::" . $dist_dir . "/";
 
+
+        $this->classFilePath = self::RESOURCE_DIR .  $namespace . "/" . $dist_dir  . "/". strtolower($this->className) . "/";
+
+        Log::info("Save view to : " . $this->classFilePath);
 
         parent::handle();
-
-        if ( $this->option('move_views_to_resources')) {
-
-             $this->copy(
-                 self::MAIN_PATH . $this->classFilePath,
-                 resource_path("views/" . $namespace . "/". strtolower($this->className) . "/")
-             );
-        }
 
         return Command::SUCCESS;
     }
@@ -87,7 +81,7 @@ class ViewMakeCommand extends AbstractMakeCommand
     protected $classFilePath = self::RESOURCE_DIR;
 
 
-
+    protected const RESOURCE_DIR = "resources/views/";
 
 
 }
