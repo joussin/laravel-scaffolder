@@ -1,0 +1,6 @@
+<?php
+
+Route::prefix("api")->group(function () {
+    Route::apiResource('{{ model_name_snake }}', {{ controller_name }}::class);
+});
+

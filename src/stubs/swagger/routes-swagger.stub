@@ -1,0 +1,7 @@
+<?php
+
+
+Route::get('/', function () {
+    return redirect()->to('/{{ package_config_key }}/api/docs/index.html');
+});
+

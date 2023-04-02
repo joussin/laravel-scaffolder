@@ -1,0 +1,62 @@
+{
+    "name": "joussin/laravel-scaffolder",
+    "description": "A laravel scaffolder.",
+    "keywords": [
+        "laravel",
+        "scaffolder"
+    ],
+    "authors": [
+        {
+            "name": "Joussin",
+            "email": "joussin@live.com",
+            "role": "Developer"
+        }
+    ],
+    "homepage": "",
+    "license": "MIT",
+    "require": {
+        "php": "^8.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "monolog/monolog": "^2.3",
+        "symfony/console": "^5.0|^6.0",
+        "symfony/var-dumper": "^5.0|^6.0",
+        "illuminate/support": "^8.77|^9.27"
+    },
+    "require-dev": {
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SJoussin\\LaravelScaffolder\\ScaffolderServiceProvider"
+            ],
+            "aliases": {
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "SJoussin\\LaravelScaffolder\\": "laravel-scaffolder/src/"
+        },
+        "files": [
+
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+    },
+    "support": {
+        "docs": "https://flareapp.io/docs/ignition-for-laravel/introduction"
+    }
+}

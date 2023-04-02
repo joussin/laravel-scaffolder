@@ -1,0 +1,4 @@
+<?php
+
+
+Route::resource('{{ model_name_snake }}', {{ controller_name }}::class);

@@ -1,0 +1,63 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Swagger",
+        "description": "",
+        "termsOfService": "",
+        "contact": {
+            "email": "apiteam@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": ""
+        },
+        "version": "0.0.0"
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": ""
+    },
+    "servers": [
+        {
+            "url": "{{ swagger_api_url }}"
+
+        }
+    ],
+    "tags": [
+{{ tags }}
+    ],
+
+    "security": [
+        {
+            "OAuth2": [
+
+            ]
+        }
+    ],
+
+    "paths": {
+
+        {{ swagger_api_resources_paths }}
+    },
+    "components": {
+        "schemas": {
+{{ definitions }}
+        },
+
+        "securitySchemes": {
+            "OAuth2": {
+                "type": "oauth2",
+                "description": "description oauth2",
+                "flows": {
+                    "clientCredentials": {
+                        "authorizationUrl": "{{ swagger_api_security_oauth2_url }}/oauth/authorize",
+                        "tokenUrl": "{{ swagger_api_security_oauth2_url }}/oauth/token",
+                        "scopes": {
+                            "{{ swagger_api_security_oauth2_scope_1_name }}": "{{ swagger_api_security_oauth2_scope_1_description }}"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
