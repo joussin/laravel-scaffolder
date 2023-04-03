@@ -1,17 +1,3 @@
-# projet laravel
-
-
-creer un dossier src/ et dans composer.json
-
-    "autoload": {
-        "psr-4": {
-            "App\\": "app/",
-            "Api\\": "src/",
-            "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
-        }
-    },
-
 
 # package:
 
@@ -20,6 +6,16 @@ a terme il faudra installer :
 joussin/laravel-scaffolder
 
 
+    "repositories": [
+
+        {
+            "type": "vcs",
+            "url": "https://github.com/joussin/laravel-scaffolder.git"
+        }
+    ],
+
+
+"joussin/laravel-scaffolder": "0.0.5"
 
 # .env
 
@@ -30,6 +26,19 @@ PACKAGE_CONFIG_KEY=laravel-scaffolder
 PACKAGE_DIST_DIR_NAME=Generated
 PACKAGE_DIR_NAME=laravel-scaffolder/src
 
+## Configuration
+
+Secrets DB conf.  
+
+```php
+// .env
+DB_CONNECTION=mysql
+DB_DATABASE=laravel_scaffolder
+DB_HOST=192.168.0.21
+DB_PORT=3094
+DB_USERNAME=root
+DB_PASSWORD=wg2bAQhd36aJ
+```
 
 
 # Models
@@ -92,7 +101,7 @@ resources  foreign keys
 api auth
 
 swagger auth
- 
+
 # ------------------------------------ PACKAGE ------------------------------------
 
 

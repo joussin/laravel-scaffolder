@@ -72,9 +72,12 @@ class MigrationsMakeCommand extends Command
 
     public function loopOnSeeders(string $command)
     {
-        $seeders_path = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . "Database/Seeders/";
+//        $seeders_path = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . "Database/Seeders/";
 
         $seeders_namespace = "\\" . \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE'] . "Database\Seeders\\";
+
+
+        $seeders_path = ("vendor" . explode("vendor", \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'])[1]). "Database/Seeders/";
 
 
         $this->loopOn($seeders_path, function ($file) use ($command, $seeders_namespace) {
@@ -94,7 +97,8 @@ class MigrationsMakeCommand extends Command
     {
         $count = 0;
 
-        $migrations_path = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . "Database/Migrations/";
+//        $migrations_path = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . "Database/Migrations/";
+        $migrations_path = ("vendor" . explode("vendor", \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'])[1]). "Database/Migrations/";
 
 
         $this->loopOn($migrations_path, function ($file) use ($command, $fresh, &$count, $migrations_path) {
