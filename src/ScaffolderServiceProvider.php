@@ -22,7 +22,7 @@ class ScaffolderServiceProvider extends ServiceProvider
         $this->commands(
             [
                 \SJoussin\LaravelScaffolder\Console\Commands\Migrations\MigrationsMakeCommand::class,
-                \SJoussin\LaravelScaffolder\Console\Commands\GenerateFromConfigMakeCommand::class,
+                \SJoussin\LaravelScaffolder\Console\Commands\GenerateFromConfigCommand::class,
 
                 \SJoussin\LaravelScaffolder\Console\Commands\Types\ValidationRulesMakeCommand::class,
                 \SJoussin\LaravelScaffolder\Console\Commands\Types\ModelMakeCommand::class,

@@ -54,7 +54,7 @@ php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\ScaffolderConf
 
 Generate files from config:
 ```bash
-php artisan make:generator-conf --fresh
+php artisan scaffold:all --fresh
 php artisan maker:migrate --fresh --seed
 ```
 

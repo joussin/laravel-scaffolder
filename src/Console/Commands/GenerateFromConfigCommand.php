@@ -5,7 +5,7 @@ namespace SJoussin\LaravelScaffolder\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
-class GenerateFromConfigMakeCommand extends Command
+class GenerateFromConfigCommand extends Command
 {
 
 
@@ -15,7 +15,7 @@ class GenerateFromConfigMakeCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'make:generator-conf {--fresh}';
+    protected $signature = 'scaffold:all {--fresh}';
 
 
     /**
@@ -23,7 +23,7 @@ class GenerateFromConfigMakeCommand extends Command
      *
      * @var string
      */
-    protected $description = 'generator project from config file';
+    protected $description = 'Project generator from config file';
 
 
     public function handle()
