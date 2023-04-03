@@ -31,18 +31,20 @@ class SwaggerMakeCommand extends AbstractMakeCommand
     {
         $this->className = "";
 
-        $this->replaceData ['{{ swagger_api_url }}'] = env('API_HOST'); //"http://0.0.0.0:4141/api/" ;
+        $api = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['api'];
+
+        $this->replaceData ['{{ swagger_api_url }}'] = $api['host']; //"http://0.0.0.0:4141/api/" ;
 
         // ---
-        $securitySwaggerStr = file_get_contents( (\SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig() ['STUB_PATH']  . "swagger/swagger.openapi.resource.security-schemes.stub"));
-        $securitySwaggerStr = str_replace("{{ swagger_api_security_oauth2_url }}", env('API_OAUTH_HOST'), $securitySwaggerStr);
 
+        $oauth = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['oauth'];
+
+        $securitySwaggerStr = file_get_contents( (\SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig() ['STUB_PATH']  . "swagger/swagger.openapi.resource.security-schemes.stub"));
+        $securitySwaggerStr = str_replace("{{ swagger_api_security_oauth2_url }}", $oauth['host'], $securitySwaggerStr);
 
         $scopesProps = "";
 
-        $scopes = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['scopes'];
-
-        foreach ($scopes as $scope => $scopeDesc)
+        foreach ($oauth['scopes'] as $scope => $scopeDesc)
         {
             $scopesProps .= '"'.$scope.'" : "'.$scopeDesc.'"' . PHP_EOL;
 
