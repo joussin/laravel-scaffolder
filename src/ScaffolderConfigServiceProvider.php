@@ -56,8 +56,8 @@ class ScaffolderConfigServiceProvider extends ServiceProvider
         if(File::isFile(base_path("config/$key.php"))){
             $this->mergeConfigFrom(base_path("config/$key.php"), $key);
         }
-        elseif(File::isFile(base_path("laravel-scaffolder/src/config/$key.php"))){
-            $this->mergeConfigFrom(base_path("laravel-scaffolder/src/config/$key.php"), $key);
+        elseif(File::isFile((__DIR__."/config/$key.php"))){
+            $this->mergeConfigFrom((__DIR__."/config/$key.php"), $key);
         }
     }
 
@@ -66,7 +66,7 @@ class ScaffolderConfigServiceProvider extends ServiceProvider
         $key = self::getScaffoldConfigKey();
 
         $this->publishes([
-            base_path("laravel-scaffolder/src/config/$key.php") => config_path("$key.php"),
+            (__DIR__."/config/$key.php") => config_path("$key.php"),
         ], 'config');
     }
 
