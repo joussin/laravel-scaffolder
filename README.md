@@ -25,7 +25,7 @@ joussin/laravel-scaffolder
 API_HOST=http://0.0.0.0:4141/api/
 API_OAUTH_HOST=http://dev.oauth.cartegriseminute.net
 API_OAUTH_SCOPE_1=route:view
-API_OAUTH_SCOPE_1_DESC=Grant route:view access
+API_OAUTH_SCOPE_1_DESC="Grant route:view access"
 
 PACKAGE_CONFIG_KEY=laravel-scaffolder
 PACKAGE_DIST_DIR_NAME=Generated

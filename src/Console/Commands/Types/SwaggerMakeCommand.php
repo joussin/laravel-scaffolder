@@ -36,8 +36,27 @@ class SwaggerMakeCommand extends AbstractMakeCommand
         // ---
         $securitySwaggerStr = file_get_contents( (\SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig() ['STUB_PATH']  . "swagger/swagger.openapi.resource.security-schemes.stub"));
         $securitySwaggerStr = str_replace("{{ swagger_api_security_oauth2_url }}", env('API_OAUTH_HOST'), $securitySwaggerStr);
-        $securitySwaggerStr = str_replace("{{ swagger_api_security_oauth2_scope_1_name }}", env('API_OAUTH_SCOPE_1'), $securitySwaggerStr);
-        $securitySwaggerStr = str_replace("{{ swagger_api_security_oauth2_scope_1_description }}", env('API_OAUTH_SCOPE_1_DESC'), $securitySwaggerStr);
+
+
+        $scopesProps = "";
+
+        $scopes = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['scopes'];
+
+        foreach ($scopes as $scope => $scopeDesc)
+        {
+                $scopesProps .= '"'.$scope.'" : "'.$scopeDesc.'"';
+
+            if($scopes[$scope] !== end( $scopes ))
+            {
+                $scopesProps .= ",";
+            }
+        }
+
+        $securitySwaggerStr = str_replace("{{ swagger_api_security_oauth2_scopes }}", $scopesProps, $securitySwaggerStr);
+
+
+//        $securitySwaggerStr = str_replace("{{ swagger_api_security_oauth2_scope_1_name }}", env('API_OAUTH_SCOPE_1'), $securitySwaggerStr);
+//        $securitySwaggerStr = str_replace("{{ swagger_api_security_oauth2_scope_1_description }}", env('API_OAUTH_SCOPE_1_DESC'), $securitySwaggerStr);
 
 
         $this->replaceData ['{{ securitySchemes }}'] = $securitySwaggerStr;

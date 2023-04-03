@@ -15,6 +15,10 @@ return [
     'USE_ROUTES_RESOURCE' => true,
 
 
+    'scopes' => [
+        'route:any' => 'Grant route:any access'
+       ],
+
     'resources' => [
 
         'Location' => [

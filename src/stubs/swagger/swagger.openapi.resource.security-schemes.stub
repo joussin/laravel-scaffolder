@@ -7,6 +7,7 @@
             "tokenUrl": "{{ swagger_api_security_oauth2_url }}/oauth/token",
             "scopes": {
                 "{{ swagger_api_security_oauth2_scope_1_name }}": "{{ swagger_api_security_oauth2_scope_1_description }}"
+                "{{  swagger_api_security_oauth2_scopes }}"
             }
         }
     }
