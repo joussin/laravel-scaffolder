@@ -2,17 +2,18 @@
 
 $dirname = SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldDirname();
 $dist_dirname = SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldDistDirname();
+$config_key = SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfigKey();
 
 return [
 
-    'ROOT_NAMESPACE' => 'App\\',
+    'LARAVEL_ROOT_NAMESPACE' => 'App\\',
 
-    'PACKAGE_DIR_PATH' => $dirname . "/",//'src/'
-    'DIST_DIR_NAME'    => $dist_dirname, //'Generated'
+    'PACKAGE_DIR_PATH' => $dirname . "/",
+    'DIST_DIR_NAME'    => $dist_dirname,
 
-    'DIST_DIR_PATH'     => $dirname . "/" . $dist_dirname . "/", //'src/Generated/'
-    'PACKAGE_NAMESPACE' => "SJoussin\LaravelScaffolder\\" . $dist_dirname . "\\", //'SJoussin\LaravelScaffolder\Generated\\'
-    'STUB_PATH'         => $dirname . "/stubs/", // "src/stubs/"
+    'DIST_DIR_PATH'     => $dirname . "/" . $dist_dirname . "/",
+    'PACKAGE_NAMESPACE' => "SJoussin\LaravelScaffolder\\" . $dist_dirname . "\\",
+    'STUB_PATH'         => $dirname . "/stubs/",
 
     'USE_ROUTES_RESOURCE' => true,
 

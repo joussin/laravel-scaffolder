@@ -48,7 +48,7 @@ class SwaggerMakeCommand extends AbstractMakeCommand
         {
             $scopesProps .= '"'.$scope.'" : "'.$scopeDesc.'"' . PHP_EOL;
 
-            if($scopes[$scope] !== end( $scopes ))
+            if($oauth['scopes'][$scope] !== end( $oauth['scopes'] ))
             {
                 $scopesProps .= ",";
             }

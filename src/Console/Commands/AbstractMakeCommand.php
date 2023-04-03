@@ -70,7 +70,7 @@ abstract class AbstractMakeCommand  extends GeneratorCommand
 
     public function getReplaceData(): array
     {
-        $this->replaceData ['{{ rootNamespace }}'] = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['ROOT_NAMESPACE'] ;
+        $this->replaceData ['{{ rootNamespace }}'] = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['LARAVEL_ROOT_NAMESPACE'] ;
         $this->replaceData ['{{ namespace }}'] = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE'] . $this->classNamespace;
         $this->replaceData ['{{ class }}'] = $this->className . $this->classNameSuffix;
 
