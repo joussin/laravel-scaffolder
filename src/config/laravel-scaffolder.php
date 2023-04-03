@@ -16,7 +16,11 @@ return [
 
 
     'scopes' => [
-        'route:any' => 'Grant route:any access'
+        'route:any' => 'Grant route:any access',
+        'route:anyView' => 'Grant route:anyView access',
+        'route:store' => 'Grant route:store access',
+        'route:edit' => 'Grant route:edit access',
+        'route:delete' => 'Grant route:delete access',
        ],
 
     'resources' => [

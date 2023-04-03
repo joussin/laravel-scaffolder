@@ -44,7 +44,7 @@ class SwaggerMakeCommand extends AbstractMakeCommand
 
         foreach ($scopes as $scope => $scopeDesc)
         {
-                $scopesProps .= '"'.$scope.'" : "'.$scopeDesc.'"';
+            $scopesProps .= '"'.$scope.'" : "'.$scopeDesc.'"' . PHP_EOL;
 
             if($scopes[$scope] !== end( $scopes ))
             {
@@ -53,11 +53,6 @@ class SwaggerMakeCommand extends AbstractMakeCommand
         }
 
         $securitySwaggerStr = str_replace("{{ swagger_api_security_oauth2_scopes }}", $scopesProps, $securitySwaggerStr);
-
-
-//        $securitySwaggerStr = str_replace("{{ swagger_api_security_oauth2_scope_1_name }}", env('API_OAUTH_SCOPE_1'), $securitySwaggerStr);
-//        $securitySwaggerStr = str_replace("{{ swagger_api_security_oauth2_scope_1_description }}", env('API_OAUTH_SCOPE_1_DESC'), $securitySwaggerStr);
-
 
         $this->replaceData ['{{ securitySchemes }}'] = $securitySwaggerStr;
 
