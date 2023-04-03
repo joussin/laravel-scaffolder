@@ -5,12 +5,12 @@ return [
 
     'ROOT_NAMESPACE' => 'App\\',
 
-    'PACKAGE_DIR_PATH' => base_path(SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldDirname() . "/"),//'src/'
+    'PACKAGE_DIR_PATH' => SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldDirname() . "/",//'src/'
     'DIST_DIR_NAME' => SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldDistDirname(), //'Generated'
 
-    'DIST_DIR_PATH' => base_path(SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldDirname() . "/" . SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldDistDirname()."/"), //'src/Generated/'
+    'DIST_DIR_PATH' => SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldDirname() . "/" . SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldDistDirname()."/", //'src/Generated/'
     'PACKAGE_NAMESPACE' => "\SJoussin\LaravelScaffolder\\". SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldDistDirname()."\\", //'SJoussin\LaravelScaffolder\Generated\\'
-    'STUB_PATH' => base_path(SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldDirname() . "/stubs/"), // "src/stubs/"
+    'STUB_PATH' => SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldDirname() . "/stubs/", // "src/stubs/"
 
     'USE_ROUTES_RESOURCE' => true,
 

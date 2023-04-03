@@ -15,6 +15,7 @@ class ScaffolderConfigServiceProvider extends ServiceProvider
      */
     public static function getScaffoldDirname(): mixed
     {
+        return __DIR__ ;
         return env('PACKAGE_DIR_NAME');
     }
     /**

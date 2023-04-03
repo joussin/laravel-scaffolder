@@ -51,7 +51,7 @@ PaymentNotification
 
 Publish config
 ```bash
-php artisan vendor:publish --provider="Api\Providers\ConfigServiceProvider"
+php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider"
 ```
 
 Generate files from config:
@@ -62,7 +62,7 @@ php artisan maker:migrate --fresh --seed
 
 Publish files :  views - swagger - routes
 ```bash
-php artisan vendor:publish --provider="Api\Providers\ScaffolderServiceProvider"
+php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\ScaffolderServiceProvider"
 ```
 
 ```bash
