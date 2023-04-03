@@ -16,7 +16,7 @@ class MigrationsMakeCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'maker:migrate  {--fresh} {--seed}';
+    protected $signature = 'make:migrate  {--fresh} {--seed}';
 
 
     /**

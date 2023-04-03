@@ -55,7 +55,7 @@ php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\ScaffolderConf
 Generate files from config:
 ```bash
 php artisan scaffold:all --fresh
-php artisan maker:migrate --fresh --seed
+php artisan make:migrate --fresh --seed
 ```
 
 Publish files :  views - swagger - routes
