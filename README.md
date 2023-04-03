@@ -76,22 +76,6 @@ php artisan route:list
 
 
 
-# Models
-
-User
-Location
-City
-Address
-
-Product
-Cart
-Command
-Delivery
-Payment
-PaymentNotification
-
-
-
 INFO  Request [app/Http/Requests/StoreAddressRequest.php] created successfully.
 
 INFO  Request [app/Http/Requests/UpdateAddressRequest.php] created successfully.

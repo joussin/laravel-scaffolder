@@ -35,9 +35,9 @@ return [
 
     'resources' => [
 
-        'Location' => [
+        'Exemple' => [
             'connection' => 'mysql',
-            'table'      => 'location',
+            'table'      => 'exemple',
             'attributes' => [
                 'id'      => [
                     'type'           => 'int',
@@ -79,53 +79,6 @@ return [
                     'extra'          => [],
                     'rules'          => 'required|float',
                 ]
-            ]
-        ],
-
-        'Address' => [
-            'connection' => 'mysql',
-            'table'      => 'address',
-            'attributes' => [
-                'id'           => [
-                    'type'           => 'int',
-                    'db_type'        => 'integer',
-                    'length'         => '33',
-                    'nullable'       => false,
-                    'default'        => null,
-                    'default_seeder' => null,
-                    'extra'          => ['PRIMARY_KEY', 'AUTO_INCREMENT', 'FOREIGN_KEY', 'UNIQUE', 'INDEX'],
-                    'rules'          => 'required|integer',
-                ],
-                'user_id'      => [
-                    'type'           => 'int',
-                    'db_type'        => 'integer',
-                    'length'         => '33',
-                    'nullable'       => true,
-                    'default'        => null,
-                    'default_seeder' => 1,
-                    'extra'          => ['FOREIGN_KEY'],
-                    'rules'          => 'nullable|integer',
-                ],
-                'location_id'  => [
-                    'type'           => 'int',
-                    'db_type'        => 'integer',
-                    'length'         => '33',
-                    'nullable'       => true,
-                    'default'        => null,
-                    'default_seeder' => 1,
-                    'extra'          => ['FOREIGN_KEY'],
-                    'rules'          => 'nullable|integer',
-                ],
-                'full_address' => [
-                    'type'           => 'string',
-                    'db_type'        => 'string',
-                    'length'         => '255',
-                    'nullable'       => true,
-                    'default'        => null,
-                    'default_seeder' => "1 quai auguste roy, Triel sur seine",
-                    'extra'          => [],
-                    'rules'          => 'nullable|string',
-                ],
             ]
         ]
     ],
