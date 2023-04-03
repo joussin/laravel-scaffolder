@@ -29,13 +29,18 @@ class SwaggerMakeCommand extends AbstractMakeCommand
      */
     public function handle()
     {
-        $this->className = ""; //Str::studly($this->argument('model'));
+        $this->className = "";
 
         $this->replaceData ['{{ swagger_api_url }}'] = env('API_HOST'); //"http://0.0.0.0:4141/api/" ;
 
-        $this->replaceData ['{{ swagger_api_security_oauth2_url }}'] = "http://dev.oauth.cartegriseminute.net" ;
-        $this->replaceData ['{{ swagger_api_security_oauth2_scope_1_name }}'] = "route:view" ;
-        $this->replaceData ['{{ swagger_api_security_oauth2_scope_1_description }}'] = "route:view scope" ;
+        // ---
+        $securitySwaggerStr = file_get_contents( (\SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig() ['STUB_PATH']  . "swagger/swagger.openapi.resource.security-schemes.stub"));
+        $securitySwaggerStr = str_replace("{{ swagger_api_security_oauth2_url }}", env('API_OAUTH_HOST'), $securitySwaggerStr);
+        $securitySwaggerStr = str_replace("{{ swagger_api_security_oauth2_scope_1_name }}", env('API_OAUTH_SCOPE_1'), $securitySwaggerStr);
+        $securitySwaggerStr = str_replace("{{ swagger_api_security_oauth2_scope_1_description }}", env('API_OAUTH_SCOPE_1_DESC'), $securitySwaggerStr);
+
+
+        $this->replaceData ['{{ securitySchemes }}'] = $securitySwaggerStr;
 
 
         $resources = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['resources'];
@@ -145,7 +150,6 @@ class SwaggerMakeCommand extends AbstractMakeCommand
 
 
         $routeSwaggerStr = file_get_contents( (\SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig() ['STUB_PATH']  . "swagger/routes-swagger.stub"));
-
         $routeSwaggerStr = str_replace("{{ package_config_key }}", \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfigKey(), $routeSwaggerStr);
 
 

@@ -1,0 +1,13 @@
+"OAuth2": {
+    "type": "oauth2",
+    "description": "description oauth2",
+    "flows": {
+        "clientCredentials": {
+            "authorizationUrl": "{{ swagger_api_security_oauth2_url }}/oauth/authorize",
+            "tokenUrl": "{{ swagger_api_security_oauth2_url }}/oauth/token",
+            "scopes": {
+                "{{ swagger_api_security_oauth2_scope_1_name }}": "{{ swagger_api_security_oauth2_scope_1_description }}"
+            }
+        }
+    }
+}
