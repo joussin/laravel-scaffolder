@@ -12,7 +12,7 @@ class RouteResourceMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:route-resource {model}
+    protected $signature = 'scaffold:route-resource {model}
                             {--route-api : create routes api}
 
     ';

@@ -15,7 +15,7 @@ class ViewMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:views {model} {template} {dist_dir} {namespace}';
+    protected $signature = 'scaffold:views {model} {template} {dist_dir} {namespace}';
 
     /**
      * The console command description.

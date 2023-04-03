@@ -12,7 +12,7 @@ class FactoryMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:factory {model}
+    protected $signature = 'scaffold:factory {model}
     {--conf : Create factory from conf}';
 
     /**

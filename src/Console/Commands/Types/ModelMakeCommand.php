@@ -11,7 +11,7 @@ class ModelMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:model {model}
+    protected $signature = 'scaffold:model {model}
                             {--conf : Create model from conf}';
 
     /**

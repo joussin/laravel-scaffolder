@@ -12,7 +12,7 @@ class SeederMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:seeder {model} {--conf : Create seeder from conf}';
+    protected $signature = 'scaffold:seeder {model} {--conf : Create seeder from conf}';
 
     /**
      * The console command description.

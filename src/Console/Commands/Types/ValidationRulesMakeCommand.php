@@ -13,7 +13,7 @@ class ValidationRulesMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:validation-rules {model}
+    protected $signature = 'scaffold:validation-rules {model}
     {--conf : validation-rules from conf data}';
 
     /**

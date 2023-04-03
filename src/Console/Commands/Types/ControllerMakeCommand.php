@@ -12,7 +12,7 @@ class ControllerMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:controller {model} {views_namespace}
+    protected $signature = 'scaffold:controller {model} {views_namespace}
 
     ';
 

@@ -12,7 +12,7 @@ class ControllerApiMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:controller-api {model}
+    protected $signature = 'scaffold:controller-api {model}
     {--conf : : Create controller api from conf}';
 
     /**

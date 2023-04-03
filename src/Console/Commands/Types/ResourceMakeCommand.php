@@ -12,7 +12,7 @@ class ResourceMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:resource {model}
+    protected $signature = 'scaffold:resource {model}
      {--conf : Create resource from conf}';
 
     /**

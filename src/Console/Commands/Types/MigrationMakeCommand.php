@@ -12,7 +12,7 @@ class MigrationMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:migration {model}
+    protected $signature = 'scaffold:migration {model}
                             {--migration_action_create : action create table}
                             {--migration_update_create : action update table}
 

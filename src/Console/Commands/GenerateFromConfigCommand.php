@@ -44,7 +44,7 @@ class GenerateFromConfigCommand extends Command
 
             // ------------------------------------------
 
-            $cmd = "php artisan maker:validation-rules $resource --conf";
+            $cmd = "php artisan scaffold:validation-rules $resource --conf";
 
             shell_exec($cmd);
 
@@ -53,7 +53,7 @@ class GenerateFromConfigCommand extends Command
 
             // ------------------------------------------
 
-            $cmd = "php artisan maker:factory $resource --conf";
+            $cmd = "php artisan scaffold:factory $resource --conf";
 
             shell_exec($cmd);
 
@@ -61,7 +61,7 @@ class GenerateFromConfigCommand extends Command
 
             // ------------------------------------------
 
-            $cmd = "php artisan maker:resource $resource --conf";
+            $cmd = "php artisan scaffold:resource $resource --conf";
 
             shell_exec($cmd);
 
@@ -69,7 +69,7 @@ class GenerateFromConfigCommand extends Command
 
             // ------------------------------------------
 
-            $cmd = "php artisan maker:model $resource --conf";
+            $cmd = "php artisan scaffold:model $resource --conf";
 
             shell_exec($cmd);
 
@@ -78,13 +78,13 @@ class GenerateFromConfigCommand extends Command
 
             // ------------------------------------------
 
-            $cmd = "php artisan maker:route $resource ";
+            $cmd = "php artisan scaffold:route $resource ";
 
             shell_exec($cmd);
 
             echo "route $resource" . PHP_EOL;
 
-            $cmd = "php artisan maker:route $resource --route-api ";
+            $cmd = "php artisan scaffold:route $resource --route-api ";
 
             shell_exec($cmd);
 
@@ -92,14 +92,14 @@ class GenerateFromConfigCommand extends Command
 
             // ------------------------------------------
 
-            $cmd = "php artisan maker:route-resource $resource";
+            $cmd = "php artisan scaffold:route-resource $resource";
 
             shell_exec($cmd);
 
             echo "route-resource $resource" . PHP_EOL;
 
 
-            $cmd = "php artisan maker:route-resource $resource --route-api ";
+            $cmd = "php artisan scaffold:route-resource $resource --route-api ";
 
             shell_exec($cmd);
 
@@ -108,7 +108,7 @@ class GenerateFromConfigCommand extends Command
 
             // ------------------------------------------
 
-            $cmd = "php artisan maker:controller-api $resource --conf";
+            $cmd = "php artisan scaffold:controller-api $resource --conf";
 
             shell_exec($cmd);
 
@@ -117,7 +117,7 @@ class GenerateFromConfigCommand extends Command
 
             // ------------------------------------------
 
-            $cmd = "php artisan maker:swagger";
+            $cmd = "php artisan scaffold:swagger";
 
             shell_exec($cmd);
 
@@ -126,7 +126,7 @@ class GenerateFromConfigCommand extends Command
 
             // ------------------------------------------
 
-            $cmd = "php artisan maker:controller $resource $package_key::backoffice";
+            $cmd = "php artisan scaffold:controller $resource $package_key::backoffice";
 
             shell_exec($cmd);
 
@@ -135,29 +135,29 @@ class GenerateFromConfigCommand extends Command
 
             // ------------------------------------------
 
-            $cmd = "php artisan maker:views layout layout backoffice $package_key";
+            $cmd = "php artisan scaffold:views layout layout backoffice $package_key";
 
             shell_exec($cmd);
 
-            $cmd = "php artisan maker:views layout header backoffice $package_key";
+            $cmd = "php artisan scaffold:views layout header backoffice $package_key";
             shell_exec($cmd);
 
-            $cmd = "php artisan maker:views layout footer backoffice $package_key";
+            $cmd = "php artisan scaffold:views layout footer backoffice $package_key";
             shell_exec($cmd);
 
-            $cmd = "php artisan maker:views layout home backoffice $package_key";
+            $cmd = "php artisan scaffold:views layout home backoffice $package_key";
             shell_exec($cmd);
 
-            $cmd = "php artisan maker:views $resource index backoffice $package_key";
+            $cmd = "php artisan scaffold:views $resource index backoffice $package_key";
             shell_exec($cmd);
 
-            $cmd = "php artisan maker:views $resource show backoffice $package_key";
+            $cmd = "php artisan scaffold:views $resource show backoffice $package_key";
             shell_exec($cmd);
 
-            $cmd = "php artisan maker:views $resource create backoffice $package_key";
+            $cmd = "php artisan scaffold:views $resource create backoffice $package_key";
             shell_exec($cmd);
 
-            $cmd = "php artisan maker:views $resource edit backoffice $package_key";
+            $cmd = "php artisan scaffold:views $resource edit backoffice $package_key";
             shell_exec($cmd);
 
             echo "views $resource" . PHP_EOL;
@@ -165,7 +165,7 @@ class GenerateFromConfigCommand extends Command
 
             // ------------------------------------------
 
-            $cmd = "php artisan maker:migration $resource --migration_action_create";
+            $cmd = "php artisan scaffold:migrations $resource --migration_action_create";
 
             shell_exec($cmd);
 
@@ -173,7 +173,7 @@ class GenerateFromConfigCommand extends Command
 
             // ------------------------------------------
 
-            $cmd = "php artisan maker:seeder $resource  --conf";
+            $cmd = "php artisan scaffold:seeder $resource  --conf";
 
             shell_exec($cmd);
 

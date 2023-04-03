@@ -12,7 +12,7 @@ class SwaggerMakeCommand extends AbstractMakeCommand
      *
      * @var string
      */
-    protected $signature = 'maker:swagger';
+    protected $signature = 'scaffold:swagger';
 
     /**
      * The console command description.
