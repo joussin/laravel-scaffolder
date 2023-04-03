@@ -51,7 +51,7 @@ class ModelMakeCommand extends AbstractMakeCommand
             $connection = $config['connection'] ;
             $table = $config['table'] ;
 
-            $package_namespace = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE'];
+            $package_namespace = "\\" . \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE'];
 
             $factoryClass = 'return '.$package_namespace.'Database\Factories\\'.$this->className.'Factory::new();' ;
 

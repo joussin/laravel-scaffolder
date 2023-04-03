@@ -53,9 +53,9 @@ class ControllerApiMakeCommand extends AbstractMakeCommand
                 $properties_put .= "'$name'" ."," . PHP_EOL. PHP_EOL;
             }
 
-            $resource = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE'] . "Http\Resources\\" . $this->className."Resource" ;
-            $validationRules = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE'] . "ValidationRules\\" . $this->className."ValidationRules" ;
-            $model = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE'] . "Models\\" . $this->className ;
+            $resource = "\\" . \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE'] . "Http\Resources\\" . $this->className."Resource" ;
+            $validationRules = "\\" . \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE'] . "ValidationRules\\" . $this->className."ValidationRules" ;
+            $model = "\\" . \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['PACKAGE_NAMESPACE'] . "Models\\" . $this->className ;
 
         }
 

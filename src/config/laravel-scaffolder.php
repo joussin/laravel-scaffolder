@@ -9,7 +9,7 @@ return [
     'DIST_DIR_NAME' => SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldDistDirname(), //'Generated'
 
     'DIST_DIR_PATH' => SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldDirname() . "/" . SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldDistDirname()."/", //'src/Generated/'
-    'PACKAGE_NAMESPACE' => "\SJoussin\LaravelScaffolder\\". SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldDistDirname()."\\", //'SJoussin\LaravelScaffolder\Generated\\'
+    'PACKAGE_NAMESPACE' => "SJoussin\LaravelScaffolder\\". SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldDistDirname()."\\", //'SJoussin\LaravelScaffolder\Generated\\'
     'STUB_PATH' => SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldDirname() . "/stubs/", // "src/stubs/"
 
     'USE_ROUTES_RESOURCE' => true,
