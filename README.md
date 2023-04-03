@@ -1,25 +1,34 @@
 
-# package:
+# install package:
 
-a terme il faudra installer :
+## composer.json :
 
-joussin/laravel-scaffolder
+```json
+{
+  "repositories": [
+
+    {
+      "type": "vcs",
+      "url": "https://github.com/joussin/laravel-scaffolder.git"
+    }
+  ]
+}
+```
 
 
-    "repositories": [
+```json
+{
+  "require": {
+    "joussin/laravel-scaffolder": "dev-develop"
+  }
+}
+```
 
-        {
-            "type": "vcs",
-            "url": "https://github.com/joussin/laravel-scaffolder.git"
-        }
-    ],
 
 
-"joussin/laravel-scaffolder": "0.0.5"
 
-# .env
 
-# --------------------------------------------
+# .env configuration:
 
 ```.env
 PACKAGE_CONFIG_KEY=laravel-scaffolder
@@ -34,21 +43,6 @@ DB_PORT=3094
 DB_USERNAME=root
 DB_PASSWORD=wg2bAQhd36aJ
 ```
-
-
-# Models
-
-User
-Location
-City
-Address
-
-Product
-Cart
-Command
-Delivery
-Payment
-PaymentNotification
 
 
 # scaffold
@@ -78,6 +72,24 @@ php artisan route:list
 
 
 # ------------------------------------ TODO ------------------------------------
+
+
+
+
+# Models
+
+User
+Location
+City
+Address
+
+Product
+Cart
+Command
+Delivery
+Payment
+PaymentNotification
+
 
 
 INFO  Request [app/Http/Requests/StoreAddressRequest.php] created successfully.
