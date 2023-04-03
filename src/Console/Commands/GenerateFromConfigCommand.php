@@ -147,16 +147,16 @@ class GenerateFromConfigCommand extends Command
             $cmd = "php artisan scaffold:views layout home backoffice $package_key";
             shell_exec($cmd);
 
-            $cmd = "php artisan scaffold:views $resource crud/index backoffice $package_key";
+            $cmd = "php artisan scaffold:views $resource index backoffice $package_key";
             shell_exec($cmd);
 
-            $cmd = "php artisan scaffold:views $resource crud/show backoffice $package_key";
+            $cmd = "php artisan scaffold:views $resource show backoffice $package_key";
             shell_exec($cmd);
 
-            $cmd = "php artisan scaffold:views $resource crud/create backoffice $package_key";
+            $cmd = "php artisan scaffold:views $resource create backoffice $package_key";
             shell_exec($cmd);
 
-            $cmd = "php artisan scaffold:views $resource crud/edit backoffice $package_key";
+            $cmd = "php artisan scaffold:views $resource edit backoffice $package_key";
             shell_exec($cmd);
 
             echo "views $resource" . PHP_EOL;
