@@ -48,8 +48,9 @@ class SwaggerMakeCommand extends AbstractMakeCommand
 
         foreach ($resources as $resource => $resourceData) {
 
+            $stub_path = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['STUB_PATH'];
 
-            $resource_partial = file_get_contents("src/stubs/swagger/swagger.openapi.resource.endpoints.stub");
+            $resource_partial = file_get_contents($stub_path . "swagger/swagger.openapi.resource.endpoints.stub");
 
             $resource_partial_render = str_replace("{{ swagger_api_resource_route_name }}", strtolower($resource), $resource_partial);
             $resource_partial_render = str_replace("{{ swagger_api_resource_name }}", $resource, $resource_partial_render);
@@ -66,7 +67,7 @@ class SwaggerMakeCommand extends AbstractMakeCommand
             }
 
 
-            $resource_partial = file_get_contents("src/stubs/swagger/swagger.openapi.resource.tags.stub");
+            $resource_partial = file_get_contents($stub_path . "swagger/swagger.openapi.resource.tags.stub");
 
             $resource_partial_render = str_replace("{{ swagger_api_resource_tag_name }}", ucfirst(strtolower($resource)), $resource_partial);
 
@@ -78,7 +79,7 @@ class SwaggerMakeCommand extends AbstractMakeCommand
             }
 
 
-            $resource_partial = file_get_contents("src/stubs/swagger/swagger.openapi.resource.definitions.stub");
+            $resource_partial = file_get_contents($stub_path . "swagger/swagger.openapi.resource.definitions.stub");
 
 
             $resource_partial_render = str_replace("{{ swagger_api_resource_name }}", ucfirst(strtolower($resource)), $resource_partial);
