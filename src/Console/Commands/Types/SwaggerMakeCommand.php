@@ -31,13 +31,13 @@ class SwaggerMakeCommand extends AbstractMakeCommand
     {
         $this->className = "";
 
-        $api = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['api'];
+        $api = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['swagger']['api'];
 
         $this->replaceData ['{{ swagger_api_url }}'] = $api['host']; //"http://0.0.0.0:4444/api/" ;
 
         // ---
 
-        $oauth = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['oauth'];
+        $oauth = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['swagger']['oauth'];
 
         $securitySwaggerStr = file_get_contents( (\SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig() ['STUB_PATH']  . "swagger/swagger.openapi.resource.security-schemes.stub"));
         $securitySwaggerStr = str_replace("{{ swagger_api_security_oauth2_url }}", $oauth['host'], $securitySwaggerStr);

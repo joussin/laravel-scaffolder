@@ -15,24 +15,35 @@ return [
     'PACKAGE_NAMESPACE' => "SJoussin\LaravelScaffolder\\" . $dist_dirname . "\\",
     'STUB_PATH'         => $dirname . "/stubs/",
 
-    'USE_ROUTES_RESOURCE' => true,
 
-    'api' => [
-        'host' => "http://0.0.0.0:4444/api/"
+    // -------------------------------------------
+    // ---------------- CONFIG MODIFIABLE --------
+    // -------------------------------------------
+
+    // utiliser les routes/controllers issus des models resources ?
+    'USE_ROUTES_RESOURCE' => false,
+
+    // config swagger
+    'swagger' => [
+
+        'api' => [
+            'host' => "http://0.0.0.0:4444/api/"
+        ],
+
+        'oauth' => [
+            'host'   => "http://dev.oauth.cartegriseminute.net",
+            'scopes' => [
+                'route:any'     => 'Grant route:any access',
+                'route:anyView' => 'Grant route:anyView access',
+                'route:store'   => 'Grant route:store access',
+                'route:edit'    => 'Grant route:edit access',
+                'route:delete'  => 'Grant route:delete access',
+            ]
+        ],
     ],
 
-    'oauth' => [
-        'host'   => "http://dev.oauth.cartegriseminute.net",
-        'scopes' => [
-            'route:any'     => 'Grant route:any access',
-            'route:anyView' => 'Grant route:anyView access',
-            'route:store'   => 'Grant route:store access',
-            'route:edit'    => 'Grant route:edit access',
-            'route:delete'  => 'Grant route:delete access',
-        ]
-    ],
 
-
+    // config des models eloquent. Sur lesquels sont basés la génération
     'resources' => [
 
         'Exemple' => [

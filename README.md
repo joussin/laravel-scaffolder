@@ -30,11 +30,13 @@
 
 # .env configuration:
 
+scaffold conf : project namespace & build dir name
 ```.env
 PACKAGE_CONFIG_KEY=laravel-scaffolder
 PACKAGE_DIST_DIR_NAME=Generated
 ```
 
+DB connection conf
 ```.env
 DB_CONNECTION=mysql
 DB_DATABASE=laravel_scaffolder
@@ -47,14 +49,27 @@ DB_PASSWORD=wg2bAQhd36aJ
 
 # scaffold
 
-Publish config
+Publish config to laravel /config dir
 ```bash
 php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider"  --force
 ```
 
-Generate files from config:
+Generate files/classes from config: 
+
+Types of files : (model, migrations, seeder, resource, controller, routes, views, swagger, validator_rules, factory ) 
+
+--fresh delete directory .env(PACKAGE_DIST_DIR_NAME)
+
 ```bash
 php artisan scaffold:all --fresh
+```
+
+Migrate DB model migrations files:
+
+--fresh: delete tables before migrate
+--seed: seed tables after migrate
+
+```bash
 php artisan scaffold:migrations --fresh --seed
 ```
 
