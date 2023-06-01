@@ -60,12 +60,12 @@ php artisan scaffold:migrations --fresh --seed
 
 Publish files :  views - swagger - routes
 ```bash
-php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\ScaffolderServiceProvider"  --force --tag=publish
+php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\ScaffolderServiceProvider"  --force 
 ```
 
 unpublish files :  views - swagger - routes
 ```bash
-php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\ScaffolderServiceProvider"  --force --tag=unpublish 
+php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\UninstallScaffolderServiceProvider"  --force  
 ```
 
 ```bash
