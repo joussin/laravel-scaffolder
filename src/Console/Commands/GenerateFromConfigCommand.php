@@ -164,7 +164,7 @@ class GenerateFromConfigCommand extends Command
 
             // ------------------------------------------
 
-            $cmd = "php artisan scaffold:migrations $resource --migration_action_create";
+            $cmd = "php artisan scaffold:migration $resource --migration_action_create";
 
             shell_exec($cmd);
 
@@ -177,6 +177,10 @@ class GenerateFromConfigCommand extends Command
             shell_exec($cmd);
 
             echo "seeder $resource" . PHP_EOL;
+
+
+
+
 
         }
 

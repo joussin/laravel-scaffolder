@@ -58,16 +58,15 @@ class MigrationMakeCommand extends AbstractMakeCommand
     {
         $this->className = Str::studly($this->argument('model'));
 
-        $this->replaceData ['{{ table }}'] = strtolower($this->className);
+        $config = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['resources'][$this->className];
+
+        $this->replaceData ['{{ table }}'] = strtolower($config['table']);
 
         $properties = "";
 
         if ($this->option('migration_action_create') ) {
             $this->action =    "create";
             $this->stubFilename =    "migration.create.stub";
-
-
-            $config = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['resources'][$this->className];
 
             foreach ($config['attributes'] as $name => $data)
             {
