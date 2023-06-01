@@ -18,7 +18,7 @@ return [
     'USE_ROUTES_RESOURCE' => true,
 
     'api' => [
-        'host' => "http://0.0.0.0:4141/api/"
+        'host' => "http://0.0.0.0:4444/api/"
     ],
 
     'oauth' => [

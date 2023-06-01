@@ -64,7 +64,7 @@ php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\ScaffolderServ
 ```
 
 ```bash
-php artisan serve --port=4141
+php artisan serve --port=4444
 ```
 ```bash
 php artisan route:list

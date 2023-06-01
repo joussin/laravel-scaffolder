@@ -33,7 +33,7 @@ class SwaggerMakeCommand extends AbstractMakeCommand
 
         $api = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['api'];
 
-        $this->replaceData ['{{ swagger_api_url }}'] = $api['host']; //"http://0.0.0.0:4141/api/" ;
+        $this->replaceData ['{{ swagger_api_url }}'] = $api['host']; //"http://0.0.0.0:4444/api/" ;
 
         // ---
 
