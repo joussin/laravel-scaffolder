@@ -54,9 +54,12 @@ class ScaffolderServiceProvider extends ServiceProvider
 
         JsonResource::withoutWrapping();
 
-
         if ($this->app->runningInConsole()) {
+
+            $this->unpublishPackageResources();
+
             $this->publishPackageResources();
+
         }
 
         $this->loadPackageResources();
@@ -70,20 +73,43 @@ class ScaffolderServiceProvider extends ServiceProvider
         // publish the views
         $this->publishes([
             \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . "resources/views/$package_key/" => base_path("resources/views/$package_key"),
-        ], 'views');
+        ], 'publish');
 
 
         // publish the swagger to public
         $this->publishes([
             \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . 'public/api/docs/' => public_path("$package_key/api/docs/"),
-        ], 'swagger');
+        ], 'publish');
 
 
         // publish the routes
         $this->publishes([
             \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . 'routes/' => base_path("routes/$package_key"),
-        ], 'routes');
+        ], 'publish');
 
+    }
+
+    public function unpublishPackageResources()
+    {
+        $package_key = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfigKey();
+
+        // unpublish the views
+        if(File::isDirectory( base_path("resources/views/$package_key") ))
+        {
+            File::deleteDirectory( base_path("resources/views/$package_key") );
+        }
+
+        // unpublish the swagger to public
+        if(File::isDirectory( public_path("$package_key") ))
+        {
+            File::deleteDirectory( public_path("$package_key") );
+        }
+
+        // unpublish the routes
+        if(File::isDirectory( base_path("routes/$package_key")))
+        {
+            File::deleteDirectory( base_path("routes/$package_key"));
+        }
     }
 
     public function loadPackageResources()
