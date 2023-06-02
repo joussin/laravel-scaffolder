@@ -62,6 +62,10 @@ class ScaffolderConfigServiceProvider extends ServiceProvider
 
     public function publishConfig()
     {
+        echo PHP_EOL;
+        echo "publish ScaffolderConfigServiceProvider::publishConfig() : ";
+
+
         $key = self::getScaffoldConfigKey();
 
         $this->publishes([

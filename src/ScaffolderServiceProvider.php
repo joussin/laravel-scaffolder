@@ -56,50 +56,11 @@ class ScaffolderServiceProvider extends ServiceProvider
 
         JsonResource::withoutWrapping();
 
-        if ($this->app->runningInConsole()) {
-
-            $this->publishPackageResources();
-
-        }
 
         $this->loadPackageResources();
     }
 
 
-    public function publishPackageResources()
-    {
-        $package_key = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfigKey();
-
-        // publish the views
-        $this->publishes([
-            \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . "resources/views/$package_key/" => base_path("resources/views/$package_key"),
-        ], 'views');
-
-
-        // publish the swagger to public
-        $this->publishes([
-            \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . 'public/api/docs/' => public_path("$package_key/api/docs/"),
-        ], 'swagger');
-
-
-        // publish the routes
-        $this->publishes([
-            \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . 'routes/' => base_path("routes/$package_key"),
-        ], 'routes');
-
-
-
-        // publish the migrations
-        $this->publishes([
-            \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . 'Database/Migrations/' => base_path("database/migrations"),
-        ], 'migrations');
-
-
-        // --------------
-        // A voir pour surcharge : controllers, models, http_resources, validator_rules
-
-
-    }
 
 
 

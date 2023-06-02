@@ -87,6 +87,12 @@ php artisan scaffold:migrations --fresh --seed
 php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\ScaffolderServiceProvider"  --force 
 ```
 
+
+
+```bash
+php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\InstallScaffolderServiceProvider"  --force 
+```
+
 ## Unpublish files / delete all (views - swagger - routes - migrations) files :
 
 ```bash
