@@ -43,46 +43,29 @@ class UninstallScaffolderServiceProvider extends ServiceProvider
             return;
         }
 
-        echo "----------------------------------------";
-        echo "Unpublish generated files : ";
-        echo "----------------------------------------";
-
         $package_key = \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfigKey();
 
         // unpublish the views
         if(File::isDirectory( base_path("resources/views/$package_key") ))
         {
-            echo PHP_EOL;
-            echo "Unpublish views : " . base_path("resources/views/$package_key");
-
             File::deleteDirectory( base_path("resources/views/$package_key") );
         }
 
         // unpublish the swagger to public
         if(File::isDirectory( public_path("$package_key") ))
         {
-            echo PHP_EOL;
-            echo "Unpublish swagger : " . public_path("$package_key");
-
             File::deleteDirectory( public_path("$package_key") );
         }
 
         // unpublish the routes
         if(File::isDirectory( base_path("routes/$package_key")))
         {
-            echo PHP_EOL;
-            echo "Unpublish routes : " . base_path("routes/$package_key");
-
-
             File::deleteDirectory( base_path("routes/$package_key"));
         }
 
         // unpublish the migrations
         if(File::isDirectory( base_path("database/migrations") ))
         {
-          echo PHP_EOL;
-             echo "Unpublish migrations : " . base_path("database/migrations");
-
 //            File::deleteDirectory( base_path("database/migrations") );
         }
     }
