@@ -76,9 +76,9 @@ return [
                     'length'         => '11',
                     'nullable'       => false,
                     'default'        => null,
-                    'default_seeder' => 9.0,
+                    'default_seeder' => '9.0',
                     'extra'          => [],
-                    'rules'          => 'required|decimal:2',
+                    'rules'          => 'required|decimal:0,2',
                 ],
                 'long'    => [
                     'type'           => 'float',
@@ -86,9 +86,9 @@ return [
                     'length'         => '11',
                     'nullable'       => false,
                     'default'        => null,
-                    'default_seeder' => 1.10,
+                    'default_seeder' => '1.10',
                     'extra'          => [],
-                    'rules'          => 'required|decimal:2',
+                    'rules'          => 'required|decimal:0,2',
                 ]
             ]
         ]
