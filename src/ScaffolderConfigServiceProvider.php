@@ -24,7 +24,7 @@ class ScaffolderConfigServiceProvider extends ServiceProvider
      */
     public static function getScaffoldDistDirname(): mixed
     {
-        return env('PACKAGE_DIST_DIR_NAME');
+        return env('PACKAGE_DIST_DIR_NAME', "Generated");
     }
 
     /**
@@ -34,7 +34,7 @@ class ScaffolderConfigServiceProvider extends ServiceProvider
      */
     public static function getScaffoldConfigKey(): mixed
     {
-        return env('PACKAGE_CONFIG_KEY');
+        return env('PACKAGE_CONFIG_KEY', 'laravel-scaffolder');
     }
 
 
@@ -55,8 +55,8 @@ class ScaffolderConfigServiceProvider extends ServiceProvider
         if(File::isFile(base_path("config/$key.php"))){
             $this->mergeConfigFrom(base_path("config/$key.php"), $key);
         }
-        elseif(File::isFile((__DIR__."/config/$key.php"))){
-            $this->mergeConfigFrom((__DIR__."/config/$key.php"), $key);
+        elseif(File::isFile((__DIR__."/config/laravel-scaffolder.php"))){
+            $this->mergeConfigFrom((__DIR__."/config/laravel-scaffolder.php"), $key);
         }
     }
 
@@ -68,7 +68,7 @@ class ScaffolderConfigServiceProvider extends ServiceProvider
         $key = self::getScaffoldConfigKey();
 
         $this->publishes([
-            (__DIR__."/config/$key.php") => config_path("$key.php"),
+            (__DIR__."/config/laravel-scaffolder.php") => config_path("$key.php"),
         ], 'config');
     }
 

@@ -83,7 +83,7 @@ class UninstallScaffolderServiceProvider extends ServiceProvider
           echo PHP_EOL;
              echo "Unpublish migrations : " . base_path("database/migrations");
 
-            File::deleteDirectory( base_path("database/migrations") );
+//            File::deleteDirectory( base_path("database/migrations") );
         }
     }
 

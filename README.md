@@ -30,7 +30,13 @@
 
 ## .env configuration:
 
-Package scaffold conf : project namespace & build dir name
+Package scaffold conf : 
+
+Facultatif:
+
+project name/namespace 
+vendor build dir name
+
 ```.env
 PACKAGE_CONFIG_KEY=laravel-scaffolder
 PACKAGE_DIST_DIR_NAME=Generated
