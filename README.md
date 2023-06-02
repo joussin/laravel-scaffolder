@@ -58,7 +58,7 @@ DB_PASSWORD=wg2bAQhd36aJ
 ## Move config file to laravel dir : '/config'
 
 ```bash
-php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider"  --force
+php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider"
 ```
 
 ## Generate files/classes/... from config: 
