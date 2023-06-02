@@ -34,7 +34,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "SJoussin\\LaravelScaffolder\\ScaffolderServiceProvider"
+                "SJoussin\\LaravelScaffolder\\ScaffolderServiceProvider",
+                "SJoussin\\LaravelScaffolder\\ScaffolderConfigServiceProvider"
             ],
             "aliases": {
             }
