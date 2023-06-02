@@ -90,9 +90,9 @@ class ScaffolderServiceProvider extends ServiceProvider
 
 
         // publish the migrations
-        $this->publishes([
-            \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . 'Database/Migrations/' => base_path("database/migrations"),
-        ], 'migrations');
+//        $this->publishes([
+//            \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . 'Database/Migrations/' => base_path("database/migrations"),
+//        ], 'migrations');
 
 
         // --------------

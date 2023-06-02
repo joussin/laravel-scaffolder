@@ -38,6 +38,8 @@ class UninstallScaffolderServiceProvider extends ServiceProvider
     public function unpublishPackageResources()
     {
 
+        echo "Unpublish package : ";
+
 //        if((new ArgvInput())->getParameterOption('--tag') != "unpublish")
 //        {
 //            return;
@@ -48,26 +50,39 @@ class UninstallScaffolderServiceProvider extends ServiceProvider
         // unpublish the views
         if(File::isDirectory( base_path("resources/views/$package_key") ))
         {
+            echo PHP_EOL;
+            echo "Unpublish " . base_path("resources/views/$package_key");
+
             File::deleteDirectory( base_path("resources/views/$package_key") );
         }
 
         // unpublish the swagger to public
         if(File::isDirectory( public_path("$package_key") ))
         {
+            echo PHP_EOL;
+            echo "Unpublish " . public_path("$package_key");
+
             File::deleteDirectory( public_path("$package_key") );
         }
 
         // unpublish the routes
         if(File::isDirectory( base_path("routes/$package_key")))
         {
+            echo PHP_EOL;
+            echo "Unpublish " . base_path("routes/$package_key");
+
+
             File::deleteDirectory( base_path("routes/$package_key"));
         }
 
         // unpublish the migrations
-        if(File::isDirectory( base_path("database/migrations") ))
-        {
-            File::deleteDirectory( base_path("database/migrations") );
-        }
+//        if(File::isDirectory( base_path("database/migrations") ))
+//        {
+//        echo PHP_EOL;
+//        echo "Unpublish " . base_path("database/migrations");
+
+//            File::deleteDirectory( base_path("database/migrations") );
+//        }
     }
 
 
