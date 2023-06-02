@@ -39,6 +39,8 @@ class ValidationRulesMakeCommand extends AbstractMakeCommand
 
             foreach ($config['attributes'] as $name => $data)
             {
+                if($name == "id")continue;
+
                 $rule = $data['rules'];
                 $rules .= "'$name' => " . "'$rule'" . ',' . PHP_EOL. PHP_EOL;
             }

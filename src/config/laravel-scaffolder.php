@@ -78,7 +78,7 @@ return [
                     'default'        => null,
                     'default_seeder' => 9.0,
                     'extra'          => [],
-                    'rules'          => 'required|float',
+                    'rules'          => 'required|decimal:2',
                 ],
                 'long'    => [
                     'type'           => 'float',
@@ -88,7 +88,7 @@ return [
                     'default'        => null,
                     'default_seeder' => 1.10,
                     'extra'          => [],
-                    'rules'          => 'required|float',
+                    'rules'          => 'required|decimal:2',
                 ]
             ]
         ]
