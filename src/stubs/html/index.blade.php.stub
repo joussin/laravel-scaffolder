@@ -1,4 +1,4 @@
-@extends('{{ namespace_view }}backoffice/layout.layout')
+@extends('{{ namespace_view }}layout.layout')
 
 
 @section('content')
