@@ -68,7 +68,7 @@ class RouteMakeCommand extends AbstractMakeCommand
 
             $this->stubFilename = "api-routes.stub";
 
-            $this->replaceData ['{{ middlewares }}'] = "'web', 'api'" ;  // 'api', 'web', 'other:scope scopes'
+            $this->replaceData ['{{ middlewares }}'] = "api'" ;  // 'api', 'other:scope scopes'
             $this->replaceData ['{{ prefix }}'] = "'api'" ;
 
 
