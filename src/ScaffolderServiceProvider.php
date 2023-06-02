@@ -87,6 +87,18 @@ class ScaffolderServiceProvider extends ServiceProvider
             \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . 'routes/' => base_path("routes/$package_key"),
         ], 'routes');
 
+
+
+        // publish the migrations
+        $this->publishes([
+            \SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider::getScaffoldConfig()['DIST_DIR_PATH'] . 'Database/Migrations/' => base_path("database/migrations"),
+        ], 'migrations');
+
+
+        // --------------
+        // A voir pour surcharge : controllers, models, http_resources, validator_rules
+
+
     }
 
 

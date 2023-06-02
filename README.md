@@ -1,7 +1,7 @@
 # LARAVEL-SCAFFOLDER 
 
 
-# Install package 
+# 1/ Install package 
 
 ## in composer.json :
 
@@ -26,7 +26,7 @@
 }
 ```
 
-# Configuration project 
+# 2/ Configuration project 
 
 ## .env configuration:
 
@@ -47,17 +47,17 @@ DB_PASSWORD=wg2bAQhd36aJ
 ```
 
 
-# Scaffold laravel project from config file 
+# 3/ Scaffold laravel project from config file 
 
-## Publish config to laravel dir : '/config'
+## Move config file to laravel dir : '/config'
 
 ```bash
 php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\ScaffolderConfigServiceProvider"  --force
 ```
 
-## Generate files/classes from config: 
+## Generate files/classes/... from config: 
 
-Types of files : (model, migrations, seeder, resource, controller, routes, views, swagger, validator_rules, factory ) 
+Types of files generated : (model, migrations, seeder, resource, controller, routes, views, swagger, validator_rules, factory ) 
 
 {--fresh} will delete directory define by .env(PACKAGE_DIST_DIR_NAME)
 
@@ -65,7 +65,7 @@ Types of files : (model, migrations, seeder, resource, controller, routes, views
 php artisan scaffold:all --fresh
 ```
 
-## Migrate DB model migrations files:
+## Migrate migrations files (just generated):
 
 {--fresh} : delete tables before migrate
 {--seed} : seed tables after migrate
@@ -74,12 +74,14 @@ php artisan scaffold:all --fresh
 php artisan scaffold:migrations --fresh --seed
 ```
 
-## Publish files :  views - swagger - routes:
+## Publish files :  views - swagger - routes - migrations:
 
 {--force} : will override existing files
+
 {--tag=views} : if specified, publish views only
 {--tag=swagger} : if specified, publish swagger only
 {--tag=routes} : if specified, publish routes only
+{--tag=migrations} : if specified, publish migrations only
 
 ```bash
 php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\ScaffolderServiceProvider"  --force 
@@ -92,7 +94,7 @@ php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\UninstallScaff
 ```
 
 
-# Test project 
+# 4/ Test project 
 
 ## Run server to test swagger, routes, backoffice etc:
 

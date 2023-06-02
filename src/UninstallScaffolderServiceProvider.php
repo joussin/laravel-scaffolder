@@ -62,6 +62,12 @@ class UninstallScaffolderServiceProvider extends ServiceProvider
         {
             File::deleteDirectory( base_path("routes/$package_key"));
         }
+
+        // unpublish the migrations
+        if(File::isDirectory( base_path("database/migrations") ))
+        {
+            File::deleteDirectory( base_path("database/migrations") );
+        }
     }
 
 
