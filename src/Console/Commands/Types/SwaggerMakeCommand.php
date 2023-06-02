@@ -114,9 +114,17 @@ class SwaggerMakeCommand extends AbstractMakeCommand
             foreach ($resourceData['attributes'] as $name => $data)
             {
                 $properties[$name] = ["type" => $data['type']];
+
+                if(!is_null($data['default_seeder']))
+                $properties[$name]["default"] = $data['default_seeder'];
+
                 if($name != "id")
                 {
                     $propertiesPostPut[$name] = ["type" => $data['type']];
+
+                    if(!is_null($data['default_seeder']))
+                        $propertiesPostPut[$name]["default"] = $data['default_seeder'];
+
                 }
             }
 
