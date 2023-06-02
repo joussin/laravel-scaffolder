@@ -38,10 +38,10 @@ class UninstallScaffolderServiceProvider extends ServiceProvider
     public function unpublishPackageResources()
     {
 
-//        if((new ArgvInput())->getParameterOption('--tag') != "unpublish")
-//        {
-//            return;
-//        }
+        if((new ArgvInput())->getParameterOption('--tag') != "unpublish")
+        {
+            return;
+        }
 
         echo "----------------------------------------";
         echo "Unpublish generated files : ";
@@ -83,7 +83,7 @@ class UninstallScaffolderServiceProvider extends ServiceProvider
           echo PHP_EOL;
              echo "Unpublish migrations : " . base_path("database/migrations");
 
-//            File::deleteDirectory( base_path("database/migrations") );
+            File::deleteDirectory( base_path("database/migrations") );
         }
     }
 

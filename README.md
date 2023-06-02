@@ -88,15 +88,10 @@ php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\ScaffolderServ
 ```
 
 
-
-```bash
-php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\InstallScaffolderServiceProvider"  --force 
-```
-
 ## Unpublish files / delete all (views - swagger - routes - migrations) files :
 
 ```bash
-php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\UninstallScaffolderServiceProvider"
+php artisan vendor:publish --provider="SJoussin\LaravelScaffolder\UninstallScaffolderServiceProvider" --tag=unpublish
 ```
 
 
