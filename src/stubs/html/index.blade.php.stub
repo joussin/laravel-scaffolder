@@ -1,4 +1,4 @@
-@extends('laravel-scaffolder::backoffice/layout.layout')
+@extends('{{ namespace_view }}backoffice/layout.layout')
 
 
 @section('content')
