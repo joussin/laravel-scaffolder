@@ -40,7 +40,7 @@ class ScaffolderServiceProvider extends ServiceProvider
             ]
         );
 
-        $this->app->register(ScaffolderConfigServiceProvider::class);
+//        $this->app->register(ScaffolderConfigServiceProvider::class);
 //        $this->app->register(UninstallScaffolderServiceProvider::class);
     }
 

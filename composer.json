@@ -35,9 +35,7 @@
         "laravel": {
             "providers": [
                 "SJoussin\\LaravelScaffolder\\ScaffolderConfigServiceProvider",
-                "SJoussin\\LaravelScaffolder\\ScaffolderServiceProvider",
-                "SJoussin\\LaravelScaffolder\\InstallScaffolderServiceProvider",
-                "SJoussin\\LaravelScaffolder\\UninstallScaffolderServiceProvider"
+                "SJoussin\\LaravelScaffolder\\ScaffolderServiceProvider"
             ],
             "aliases": {
             }
